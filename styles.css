@@ -522,6 +522,48 @@ body {
     margin-bottom: 1rem;
 }
 
+.course-status {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.course-description {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    font-style: italic;
+    margin-bottom: 1rem;
+}
+
+.course-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.course-alternative {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    text-align: center;
+    margin-top: 0.5rem;
+    line-height: 1.4;
+}
+
+.community-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.community-link:hover {
+    color: var(--primary-hover);
+    text-decoration: underline;
+}
+
 /* Footer */
 .footer {
     background-color: var(--text-primary);

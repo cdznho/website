@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://js.stripe.com/v3/"></script>
 </head>
 <body>
     <nav class="navbar">
@@ -88,20 +89,21 @@
                                 <span class="date">Featured Book</span>
                                 <span class="read-time">Amazon Bestseller</span>
                             </div>
-                            <a href="https://www.amazon.com/dp/B0F4RG9KTB" class="btn btn-primary" style="margin-top: 1rem;">View on Amazon</a>
+                            <a href="https://www.amazon.com/dp/B0F4RG9KTB" class="btn btn-primary" style="margin-top: 1rem;" target="_blank">View on Amazon</a>
                         </div>
                     </article>
                     <article class="article-card">
                         <div class="article-image">
-                            <img src="images/generative-ai-article.jpg" alt="Generative AI Article" class="article-img">
+                            <img src="images/ai-seo-article.png" alt="AI SEO Article" class="article-img">
                         </div>
                         <div class="article-content">
-                            <h3>Generative AI in Data Science</h3>
-                            <p>Comprehensive guide to implementing generative AI techniques in data science workflows...</p>
+                            <h3>AI SEO: Why Your Brand Must Be Visible in ChatGPT, Perplexity, and the Future of Search</h3>
+                            <p>Search is no longer just about Google. Learn how AI tools like ChatGPT and Perplexity are reshaping digital visibility and why traditional SEO isn't enough anymore...</p>
                             <div class="article-meta">
-                                <span class="date">March 10, 2024</span>
-                                <span class="read-time">8 min read</span>
+                                <span class="date">July 9, 2025</span>
+                                <span class="read-time">12 min read</span>
                             </div>
+                            <a href="ai-seo-article.html" class="btn btn-primary" style="margin-top: 1rem;">Read Full Article</a>
                         </div>
                     </article>
                     <article class="article-card">
@@ -138,20 +140,20 @@
                             <li><i class="fas fa-check"></i> Industry insights & trends</li>
                             <li><i class="fas fa-check"></i> Networking opportunities</li>
                         </ul>
-                        <a href="#" class="btn btn-primary">Join Community</a>
+                        <a href="https://www.skool.com/ai-seo-the-2025-community-4247" class="btn btn-primary" target="_blank">Join Community</a>
                     </div>
                     <div class="community-stats">
                         <div class="stat-card">
                             <h4>Active Members</h4>
-                            <p class="stat-number">12,500+</p>
+                            <p class="stat-number">10+</p>
                         </div>
                         <div class="stat-card">
                             <h4>Daily Discussions</h4>
-                            <p class="stat-number">150+</p>
+                            <p class="stat-number">1+</p>
                         </div>
                         <div class="stat-card">
                             <h4>Events This Month</h4>
-                            <p class="stat-number">8</p>
+                            <p class="stat-number">1</p>
                         </div>
                     </div>
                 </div>
@@ -187,8 +189,27 @@
 
         <section id="courses" class="section">
             <div class="container">
-                <h2 class="section-title">Featured Courses</h2>
+                <h2 class="section-title">Courses & Portfolio</h2>
                 <div class="courses-grid">
+                    <div class="course-card">
+                        <div class="course-image">
+                            <img src="images/course-ai-seo.png" alt="AI SEO for Large Enterprises Course" class="course-img">
+                        </div>
+                        <div class="course-content">
+                            <h3>AI SEO for Large Enterprises</h3>
+                            <p>Transform your SEO strategy with AI-powered techniques for enterprise-level optimization.</p>
+                            <div class="course-meta">
+                                <span class="course-level">Intermediate</span>
+                                <span class="course-duration">1 Day</span>
+                            </div>
+                            <div class="course-price">$49</div>
+                            <a href="https://www.youtube.com/watch?v=tyU06kpEA84" class="btn btn-secondary" target="_blank" style="margin-bottom: 0.5rem;">View First Module</a>
+                            <div class="course-buttons">
+                                <button class="btn btn-primary course-enroll-btn" data-course="ai-seo">Enroll Now</button>
+                                <p class="course-alternative">Or join our <a href="https://www.skool.com/ai-seo-the-2025-community-4247" target="_blank" class="community-link">AI SEO Community</a> for $19/month and get this course + more!</p>
+                            </div>
+                        </div>
+                    </div>
                     <div class="course-card">
                         <div class="course-image">
                             <img src="images/course-gen-ai-data-science.jpg" alt="Generative AI for Data Scientists Course" class="course-img">
@@ -197,11 +218,11 @@
                             <h3>Generative AI for Data Scientists</h3>
                             <p>Master the latest generative AI techniques and integrate them into your data science workflows.</p>
                             <div class="course-meta">
-                                <span class="course-level">Intermediate</span>
-                                <span class="course-duration">8 weeks</span>
+                                <span class="course-level">Advanced</span>
+                                <span class="course-duration">2 Days</span>
                             </div>
-                            <div class="course-price">$399</div>
-                            <a href="#" class="btn btn-primary">Enroll Now</a>
+                            <div class="course-status">Portfolio Course</div>
+                            <div class="course-description">Part of my comprehensive AI training portfolio</div>
                         </div>
                     </div>
                     <div class="course-card">
@@ -213,10 +234,10 @@
                             <p>Combine the power of generative AI with advanced SQL techniques for data analysis.</p>
                             <div class="course-meta">
                                 <span class="course-level">Advanced</span>
-                                <span class="course-duration">6 weeks</span>
+                                <span class="course-duration">1 Day</span>
                             </div>
-                            <div class="course-price">$299</div>
-                            <a href="#" class="btn btn-primary">Enroll Now</a>
+                            <div class="course-status">Portfolio Course</div>
+                            <div class="course-description">Part of my comprehensive AI training portfolio</div>
                         </div>
                     </div>
                     <div class="course-card">
@@ -228,25 +249,10 @@
                             <p>Build sophisticated Retrieval-Augmented Generation systems for enterprise applications.</p>
                             <div class="course-meta">
                                 <span class="course-level">Expert</span>
-                                <span class="course-duration">10 weeks</span>
+                                <span class="course-duration">1 Day</span>
                             </div>
-                            <div class="course-price">$499</div>
-                            <a href="#" class="btn btn-primary">Enroll Now</a>
-                        </div>
-                    </div>
-                    <div class="course-card">
-                        <div class="course-image">
-                            <img src="images/course-ai-seo.jpg" alt="AI SEO Course" class="course-img">
-                        </div>
-                        <div class="course-content">
-                            <h3>AI SEO</h3>
-                            <p>Transform your SEO strategy with AI-powered techniques for enterprise-level optimization.</p>
-                            <div class="course-meta">
-                                <span class="course-level">Intermediate</span>
-                                <span class="course-duration">5 weeks</span>
-                            </div>
-                            <div class="course-price">$249</div>
-                            <a href="#" class="btn btn-primary">Enroll Now</a>
+                            <div class="course-status">Portfolio Course</div>
+                            <div class="course-description">Part of my comprehensive AI training portfolio</div>
                         </div>
                     </div>
                 </div>

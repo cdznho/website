@@ -49,19 +49,88 @@ window.addEventListener('scroll', () => {
 });
 
 // Newsletter form submission
-const newsletterForm = document.querySelector('.subscription-form');
-if (newsletterForm) {
-    newsletterForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const email = this.querySelector('input[type="email"]').value;
+function initializeNewsletterForm() {
+    const newsletterForm = document.querySelector('.subscription-form');
+    if (newsletterForm) {
+        console.log('Newsletter form found, initializing...');
         
-        if (email) {
-            // Here you would typically send the email to your backend
-            // For now, we'll just show a success message
-            showNotification('Thank you for subscribing! You\'ll receive our latest updates soon.', 'success');
-            this.reset();
-        }
-    });
+        newsletterForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            console.log('Newsletter form submitted');
+            
+            const emailInput = this.querySelector('input[type="email"]');
+            const submitButton = this.querySelector('button[type="submit"]');
+            const email = emailInput ? emailInput.value.trim() : '';
+            
+            console.log('Email input value:', email);
+            
+            // Validate email format
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!email || !emailRegex.test(email)) {
+                showNotification('Please enter a valid email address.', 'error');
+                return;
+            }
+            
+            // Show loading state
+            const originalText = submitButton.textContent;
+            submitButton.textContent = 'Subscribing...';
+            submitButton.disabled = true;
+            
+            try {
+                // For GitHub Pages, store in localStorage and show success
+                console.log('Current localStorage before:', localStorage.getItem('newsletter-subscribers'));
+                const subscribers = JSON.parse(localStorage.getItem('newsletter-subscribers') || '[]');
+                console.log('Parsed subscribers:', subscribers);
+                
+                const existingSubscriber = subscribers.find(sub => sub.email.toLowerCase() === email.toLowerCase());
+                
+                if (existingSubscriber) {
+                    console.log('Existing subscriber found:', existingSubscriber);
+                    showNotification('You are already subscribed to our newsletter.', 'info');
+                } else {
+                    const newSubscriber = {
+                        id: Date.now().toString(),
+                        email: email.toLowerCase(),
+                        subscribedAt: new Date().toISOString(),
+                        status: 'active',
+                        source: 'newsletter'
+                    };
+                    
+                    subscribers.push(newSubscriber);
+                    
+                    // Try to save to localStorage
+                    try {
+                        localStorage.setItem('newsletter-subscribers', JSON.stringify(subscribers));
+                        console.log('Saved to localStorage successfully');
+                        console.log('localStorage after save:', localStorage.getItem('newsletter-subscribers'));
+                        
+                        // Verify it was saved
+                        const verification = JSON.parse(localStorage.getItem('newsletter-subscribers') || '[]');
+                        console.log('Verification - subscribers count:', verification.length);
+                        
+                    } catch (storageError) {
+                        console.error('LocalStorage save error:', storageError);
+                        showNotification('Error saving subscription. Please try again.', 'error');
+                        return;
+                    }
+                    
+                    console.log('Newsletter subscriber added:', newSubscriber);
+                    showNotification('Thank you for subscribing! You\'ll receive our latest updates soon.', 'success');
+                    this.reset();
+                }
+            } catch (error) {
+                console.error('Subscription error:', error);
+                showNotification('Something went wrong. Please try again later.', 'error');
+            } finally {
+                // Reset button state
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
+            }
+        });
+    } else {
+        console.warn('Newsletter form not found - retrying in 1 second...');
+        setTimeout(initializeNewsletterForm, 1000);
+    }
 }
 
 // Notification system
@@ -70,12 +139,28 @@ function showNotification(message, type = 'info') {
     notification.className = `notification notification-${type}`;
     notification.textContent = message;
     
+    // Get background color based on type
+    let backgroundColor;
+    switch (type) {
+        case 'success':
+            backgroundColor = '#10b981';
+            break;
+        case 'error':
+            backgroundColor = '#ef4444';
+            break;
+        case 'info':
+            backgroundColor = '#3b82f6';
+            break;
+        default:
+            backgroundColor = '#2563eb';
+    }
+    
     // Add notification styles
     notification.style.cssText = `
         position: fixed;
         top: 20px;
         right: 20px;
-        background: ${type === 'success' ? '#10b981' : '#2563eb'};
+        background: ${backgroundColor};
         color: white;
         padding: 1rem 1.5rem;
         border-radius: 12px;
@@ -83,7 +168,9 @@ function showNotification(message, type = 'info') {
         z-index: 1001;
         transform: translateX(100%);
         transition: transform 0.3s ease;
-        max-width: 300px;
+        max-width: 350px;
+        font-size: 0.9rem;
+        line-height: 1.4;
     `;
     
     document.body.appendChild(notification);
@@ -97,7 +184,9 @@ function showNotification(message, type = 'info') {
     setTimeout(() => {
         notification.style.transform = 'translateX(100%)';
         setTimeout(() => {
-            document.body.removeChild(notification);
+            if (document.body.contains(notification)) {
+                document.body.removeChild(notification);
+            }
         }, 300);
     }, 5000);
 }
@@ -238,10 +327,290 @@ const statsObserver = new IntersectionObserver((entries) => {
     });
 }, { threshold: 0.5 });
 
+// Stripe Payment Integration
+function initializeStripe() {
+    // Note: Replace with your actual Stripe publishable key
+    const stripe = Stripe('pk_test_your_publishable_key_here');
+    
+    // Course pricing
+    const coursePrices = {
+        'ai-seo': {
+            price: 49,
+            name: 'AI SEO for Large Enterprises',
+            description: 'Transform your SEO strategy with AI-powered techniques'
+        }
+    };
+    
+    // Handle course enrollment
+    document.querySelectorAll('.course-enroll-btn').forEach(button => {
+        button.addEventListener('click', async (e) => {
+            e.preventDefault();
+            const courseId = button.getAttribute('data-course');
+            const course = coursePrices[courseId];
+            
+            if (!course) {
+                showNotification('Course not found. Please try again.', 'error');
+                return;
+            }
+            
+            // Show loading state
+            button.textContent = 'Processing...';
+            button.disabled = true;
+            
+            try {
+                // Create checkout session
+                const response = await fetch('/create-checkout-session', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        courseId: courseId,
+                        courseName: course.name,
+                        price: course.price,
+                        description: course.description
+                    }),
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                
+                const session = await response.json();
+                
+                // Redirect to Stripe Checkout
+                const result = await stripe.redirectToCheckout({
+                    sessionId: session.id
+                });
+                
+                if (result.error) {
+                    showNotification(result.error.message, 'error');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showNotification('Payment system temporarily unavailable. Please try again later.', 'error');
+            } finally {
+                // Reset button state
+                button.textContent = 'Enroll Now';
+                button.disabled = false;
+            }
+        });
+    });
+}
+
+// Email collection modal
+function showEmailModal(courseId, courseName, callback) {
+    // Create modal overlay
+    const overlay = document.createElement('div');
+    overlay.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+    `;
+    
+    // Create modal content
+    const modal = document.createElement('div');
+    modal.style.cssText = `
+        background: white;
+        padding: 2rem;
+        border-radius: 12px;
+        max-width: 400px;
+        width: 90%;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    `;
+    
+    modal.innerHTML = `
+        <h3 style="margin-bottom: 1rem; color: #1e293b;">Enroll in ${courseName}</h3>
+        <p style="margin-bottom: 1.5rem; color: #64748b;">Please enter your email address to proceed with enrollment.</p>
+        <form id="email-form">
+            <input type="email" id="modal-email" placeholder="Enter your email address" required 
+                   style="width: 100%; padding: 0.75rem; border: 2px solid #e2e8f0; border-radius: 8px; margin-bottom: 1rem; font-size: 1rem;">
+            <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+                <button type="button" id="modal-cancel" style="padding: 0.75rem 1.5rem; border: 2px solid #e2e8f0; background: white; color: #64748b; border-radius: 8px; cursor: pointer;">Cancel</button>
+                <button type="submit" id="modal-submit" style="padding: 0.75rem 1.5rem; border: none; background: #2563eb; color: white; border-radius: 8px; cursor: pointer;">Continue to Payment</button>
+            </div>
+        </form>
+    `;
+    
+    overlay.appendChild(modal);
+    document.body.appendChild(overlay);
+    
+    // Focus on email input
+    const emailInput = modal.querySelector('#modal-email');
+    emailInput.focus();
+    
+    // Handle form submission
+    const form = modal.querySelector('#email-form');
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = emailInput.value.trim();
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        
+        if (!email || !emailRegex.test(email)) {
+            showNotification('Please enter a valid email address.', 'error');
+            return;
+        }
+        
+        // Close modal and proceed
+        document.body.removeChild(overlay);
+        callback(email);
+    });
+    
+    // Handle cancel
+    modal.querySelector('#modal-cancel').addEventListener('click', () => {
+        document.body.removeChild(overlay);
+    });
+    
+    // Handle overlay click
+    overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) {
+            document.body.removeChild(overlay);
+        }
+    });
+    
+    // Handle escape key
+    const escapeHandler = (e) => {
+        if (e.key === 'Escape') {
+            document.body.removeChild(overlay);
+            document.removeEventListener('keydown', escapeHandler);
+        }
+    };
+    document.addEventListener('keydown', escapeHandler);
+}
+
+// Email instruction modal for course enrollment
+function showEmailInstructionModal() {
+    // Create modal overlay
+    const overlay = document.createElement('div');
+    overlay.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+    `;
+    
+    // Create modal content
+    const modal = document.createElement('div');
+    modal.style.cssText = `
+        background: white;
+        padding: 2.5rem;
+        border-radius: 12px;
+        max-width: 500px;
+        width: 90%;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    `;
+    
+    modal.innerHTML = `
+        <h3 style="margin-bottom: 1rem; color: #1e293b; font-size: 1.5rem;">AI SEO for Large Enterprises</h3>
+        <p style="margin-bottom: 1.5rem; color: #64748b; line-height: 1.6;">To enroll in this course, please send an email to:</p>
+        
+        <div style="background: #f8fafc; padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; border: 2px solid #e2e8f0;">
+            <p style="margin: 0 0 0.5rem 0; color: #1e293b; font-weight: 600;">Email:</p>
+            <p style="margin: 0 0 1rem 0; color: #2563eb; font-size: 1.1rem; font-weight: 600;">cedric@agenticautomates.com</p>
+            
+            <p style="margin: 0 0 0.5rem 0; color: #1e293b; font-weight: 600;">Subject Line:</p>
+            <p style="margin: 0; color: #2563eb; font-size: 1.1rem; font-weight: 600;">AI SEO course for Large Enterprises</p>
+        </div>
+        
+        <p style="margin-bottom: 1.5rem; color: #64748b; font-size: 0.9rem; line-height: 1.5;">
+            Include your name and any specific questions about the course. You'll receive enrollment details and payment instructions within 24 hours.
+        </p>
+        
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+            <button id="copy-email" style="padding: 0.75rem 1.5rem; border: 2px solid #2563eb; background: white; color: #2563eb; border-radius: 8px; cursor: pointer; font-weight: 600;">Copy Email</button>
+            <button id="copy-subject" style="padding: 0.75rem 1.5rem; border: 2px solid #2563eb; background: white; color: #2563eb; border-radius: 8px; cursor: pointer; font-weight: 600;">Copy Subject</button>
+            <button id="modal-close" style="padding: 0.75rem 1.5rem; border: none; background: #2563eb; color: white; border-radius: 8px; cursor: pointer; font-weight: 600;">Close</button>
+        </div>
+    `;
+    
+    overlay.appendChild(modal);
+    document.body.appendChild(overlay);
+    
+    // Handle copy email button
+    modal.querySelector('#copy-email').addEventListener('click', () => {
+        navigator.clipboard.writeText('cedric@agenticautomates.com').then(() => {
+            showNotification('Email address copied to clipboard!', 'success');
+        }).catch(() => {
+            showNotification('Could not copy email. Please copy manually.', 'error');
+        });
+    });
+    
+    // Handle copy subject button
+    modal.querySelector('#copy-subject').addEventListener('click', () => {
+        navigator.clipboard.writeText('AI SEO course for Large Enterprises').then(() => {
+            showNotification('Subject line copied to clipboard!', 'success');
+        }).catch(() => {
+            showNotification('Could not copy subject. Please copy manually.', 'error');
+        });
+    });
+    
+    // Handle close button
+    modal.querySelector('#modal-close').addEventListener('click', () => {
+        document.body.removeChild(overlay);
+    });
+    
+    // Handle overlay click
+    overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) {
+            document.body.removeChild(overlay);
+        }
+    });
+    
+    // Handle escape key
+    const escapeHandler = (e) => {
+        if (e.key === 'Escape') {
+            document.body.removeChild(overlay);
+            document.removeEventListener('keydown', escapeHandler);
+        }
+    };
+    document.addEventListener('keydown', escapeHandler);
+}
+
+// Enhanced payment handler with email collection
+function handlePaymentWithEmail() {
+    document.querySelectorAll('.course-enroll-btn').forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            const courseId = button.getAttribute('data-course');
+            
+            if (courseId === 'ai-seo') {
+                showEmailInstructionModal();
+            } else {
+                showNotification('Course enrollment available soon!', 'info');
+            }
+        });
+    });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM loaded, initializing components...');
+    
     const aboutSection = document.querySelector('#about');
     const communitySection = document.querySelector('#community');
     
     if (aboutSection) statsObserver.observe(aboutSection);
     if (communitySection) statsObserver.observe(communitySection);
+    
+    // Initialize newsletter form
+    initializeNewsletterForm();
+    
+    // Initialize payment handling with email collection
+    handlePaymentWithEmail();
+    
+    // Uncomment when Stripe is configured:
+    // initializeStripe();
 });
