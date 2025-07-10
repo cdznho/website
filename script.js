@@ -580,7 +580,7 @@ function showEmailInstructionModal() {
     document.addEventListener('keydown', escapeHandler);
 }
 
-// Enhanced payment handler with email collection
+// Enhanced payment handler with direct link
 function handlePaymentWithEmail() {
     document.querySelectorAll('.course-enroll-btn').forEach(button => {
         button.addEventListener('click', (e) => {
@@ -588,7 +588,8 @@ function handlePaymentWithEmail() {
             const courseId = button.getAttribute('data-course');
             
             if (courseId === 'ai-seo') {
-                showEmailInstructionModal();
+                // Redirect to AI SEO course page
+                window.open('https://ai-seo-future-grab.lovable.app/', '_blank');
             } else {
                 showNotification('Course enrollment available soon!', 'info');
             }
