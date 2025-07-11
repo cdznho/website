@@ -77,46 +77,22 @@ function initializeNewsletterForm() {
             submitButton.disabled = true;
             
             try {
-                // For GitHub Pages, store in localStorage and show success
-                console.log('Current localStorage before:', localStorage.getItem('newsletter-subscribers'));
-                const subscribers = JSON.parse(localStorage.getItem('newsletter-subscribers') || '[]');
-                console.log('Parsed subscribers:', subscribers);
+                // Send to backend API
+                const response = await fetch('/subscribe', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email: email })
+                });
                 
-                const existingSubscriber = subscribers.find(sub => sub.email.toLowerCase() === email.toLowerCase());
+                const result = await response.json();
                 
-                if (existingSubscriber) {
-                    console.log('Existing subscriber found:', existingSubscriber);
-                    showNotification('You are already subscribed to our newsletter.', 'info');
-                } else {
-                    const newSubscriber = {
-                        id: Date.now().toString(),
-                        email: email.toLowerCase(),
-                        subscribedAt: new Date().toISOString(),
-                        status: 'active',
-                        source: 'newsletter'
-                    };
-                    
-                    subscribers.push(newSubscriber);
-                    
-                    // Try to save to localStorage
-                    try {
-                        localStorage.setItem('newsletter-subscribers', JSON.stringify(subscribers));
-                        console.log('Saved to localStorage successfully');
-                        console.log('localStorage after save:', localStorage.getItem('newsletter-subscribers'));
-                        
-                        // Verify it was saved
-                        const verification = JSON.parse(localStorage.getItem('newsletter-subscribers') || '[]');
-                        console.log('Verification - subscribers count:', verification.length);
-                        
-                    } catch (storageError) {
-                        console.error('LocalStorage save error:', storageError);
-                        showNotification('Error saving subscription. Please try again.', 'error');
-                        return;
-                    }
-                    
-                    console.log('Newsletter subscriber added:', newSubscriber);
+                if (result.success) {
                     showNotification('Thank you for subscribing! You\'ll receive our latest updates soon.', 'success');
                     this.reset();
+                } else {
+                    showNotification(result.message || 'Subscription failed. Please try again.', 'error');
                 }
             } catch (error) {
                 console.error('Subscription error:', error);

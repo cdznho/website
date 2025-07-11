@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supercharging Your AI: Diving Deep into Advanced RAG - Cedric De Schaut</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" style="text-decoration: none; color: inherit;">
+                    <h2>Cedric De Schaut</h2>
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html#about" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="index.html#articles" class="nav-link">Articles</a></li>
+                <li class="nav-item"><a href="index.html#community" class="nav-link">Community</a></li>
+                <li class="nav-item"><a href="index.html#newsletter" class="nav-link">Newsletter</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <article class="blog-post">
+            <header class="post-header">
+                <h1 class="post-title">Supercharging Your AI: Diving Deep into Advanced RAG</h1>
+                <div class="post-meta">
+                    <span class="post-date"><i class="fas fa-calendar"></i> July 2025</span>
+                    <span class="post-category"><i class="fas fa-tag"></i> AI & Machine Learning</span>
+                </div>
+            </header>
+
+            <div class="post-content">
+                <p>If you've been following the world of AI, you've likely heard of <strong>Retrieval Augmented Generation (RAG)</strong>. It's a fantastic framework that helps Large Language Models (LLMs) provide more accurate and up-to-date information by retrieving relevant documents before generating a response. However, the initial, or "vanilla," RAG setup often falls short in addressing crucial aspects that impact the quality of both retrieval and answer generation. This is where <strong>advanced RAG</strong> comes in, offering powerful optimisations to take your AI applications to the next level.</p>
+
+                <div class="visual-comparison">
+                    <div class="comparison-card vanilla">
+                        <h4>Vanilla RAG Challenges</h4>
+                        <ul>
+                            <li>❌ Irrelevant retrieved documents</li>
+                            <li>❌ Insufficient context</li>
+                            <li>❌ Redundant information noise</li>
+                            <li>❌ High latency</li>
+                            <li>❌ Failed answer generation</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-card advanced">
+                        <h4>Advanced RAG Solutions</h4>
+                        <ul>
+                            <li>✅ Smart pre-retrieval optimization</li>
+                            <li>✅ Enhanced embedding models</li>
+                            <li>✅ Intelligent filtering & ranking</li>
+                            <li>✅ Optimized performance</li>
+                            <li>✅ Reliable answer generation</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <p>Advanced RAG focuses on optimising the RAG pipeline at three distinct stages:</p>
+
+                <div class="pipeline-diagram">
+                    <div class="pipeline-stage">
+                        <div class="stage-icon">📋</div>
+                        <h4>1. Pre-retrieval</h4>
+                        <p>Data preparation & query optimization</p>
+                    </div>
+                    <div class="pipeline-arrow">→</div>
+                    <div class="pipeline-stage">
+                        <div class="stage-icon">🔍</div>
+                        <h4>2. Retrieval</h4>
+                        <p>Enhanced search & filtering</p>
+                    </div>
+                    <div class="pipeline-arrow">→</div>
+                    <div class="pipeline-stage">
+                        <div class="stage-icon">✨</div>
+                        <h4>3. Post-retrieval</h4>
+                        <p>Refinement & answer generation</p>
+                    </div>
+                </div>
+
+
+
+                <h2>1. Pre-retrieval: Setting the Stage for Success</h2>
+                <p>This initial stage is all about preparing your data and refining user queries before the actual retrieval happens. It's a crucial step that can significantly impact the relevance of what's ultimately retrieved.</p>
+
+                <h3>Data Indexing Optimisations</h3>
+                <p>This involves structuring and preprocessing your data within the RAG ingestion pipeline, typically within the cleaning or chunking modules, for better indexing.</p>
+                <ul>
+                    <li><strong>Sliding Window</strong>: This technique introduces <strong>overlap between text chunks</strong>, ensuring that important context near chunk boundaries is retained, which boosts retrieval accuracy. It's especially useful in fields like legal or medical documents where information often spans sections.</li>
+                    
+                    <div class="code-example">
+                        <h5>Sliding Window Implementation</h5>
+                        <pre><code># Example: Sliding window chunking
+def create_sliding_chunks(text, chunk_size=1000, overlap=200):
+    chunks = []
+    start = 0
+    
+    while start < len(text):
+        end = start + chunk_size
+        chunk = text[start:end]
+        chunks.append(chunk)
+        start = end - overlap  # Overlap with previous chunk
+    
+    return chunks
+
+# Usage
+document = "Your long document text here..."
+chunks = create_sliding_chunks(document, chunk_size=1000, overlap=200)
+print(f"Created {len(chunks)} chunks with overlap")</code></pre>
+                    </div>
+                    <li><strong>Enhancing Data Granularity</strong>: This is about making your dataset cleaner and more accurate by removing irrelevant details, verifying facts, and updating outdated information, leading to sharper retrieval.</li>
+                    <li><strong>Metadata</strong>: Adding tags like dates, URLs, or chapter markers can help filter results efficiently during retrieval.</li>
+                    <li><strong>Optimising Index Structures</strong>: This includes using various chunk sizes and <strong>multi-indexing strategies</strong>.</li>
+                    <li><strong>Small-to-Big</strong>: An innovative algorithm that <strong>decouples the chunks used for retrieval from the context used for final answer generation</strong>. It uses a small text sequence for embedding (reducing noise and multiple topics in the embedding) while preserving a wider window of context in the metadata for the LLM.</li>
+                </ul>
+
+                <h3>Query Optimisation</h3>
+                <p>These techniques are applied directly to the user's query before it's embedded and used to retrieve chunks.</p>
+                <ul>
+                    <li><strong>Query Routing</strong>: This intelligent technique decides which action to take based on the user's input, much like an <code>if/else</code> statement, but using natural language. For instance, it can determine if context is needed from a vector database, an SQL database, or even the internet via API calls. It can also select the best prompt template for a given input.</li>
+                    <li><strong>Query Rewriting</strong>: Sometimes, a user's initial query might not perfectly align with how your data is structured. Query rewriting reformulates the question to better match the indexed information. This can involve <strong>paraphrasing</strong> (e.g., "causes of climate change" to "factors contributing to global warming"), <strong>synonym substitution</strong>, breaking down longer queries into <strong>sub-queries</strong>, or even using <strong>Hypothetical Document Embeddings (HyDE)</strong> where an LLM creates a hypothetical response that's then fed with the original query into the retrieval stage.</li>
+                    <li><strong>Query Expansion</strong>: This enriches the user's question by adding additional terms or concepts, providing different perspectives for the search (e.g., searching "disease" and also including "illnesses" or "ailments").</li>
+                    <li><strong>Self-query</strong>: This maps unstructured queries into structured ones, where an LLM identifies key entities (like cities) within the input text to use as <strong>filtering parameters</strong>, thereby reducing the vector search space.</li>
+                </ul>
+
+                <p>It's worth noting that pre-retrieval optimisations are highly dependent on your specific data type, structure, and source, making experimentation key to finding what works best.</p>
+
+                <h2>2. Retrieval: Enhancing the Search for Information</h2>
+                <p>The retrieval step itself can be made much more effective by focusing on two core areas: improving embedding models and leveraging database features. The ultimate goal here is to <strong>enhance the vector search step</strong> by improving semantic similarity between the query and indexed data.</p>
+
+                <h3>Improving Embedding Models</h3>
+                <ul>
+                    <li>You can <strong>fine-tune pre-trained embedding models</strong> to better understand the specific jargon and nuances of your domain, especially for evolving or rare terminology.</li>
+                    <li>Alternatively, using <strong>instructor models</strong> can guide the embedding generation process with specific instructions tailored to your domain. This can be a good option as it's less resource-intensive than full fine-tuning.</li>
+                </ul>
+
+                <h3>Leveraging Database Filter and Search Features</h3>
+                <ul>
+                    <li><strong>Hybrid Search</strong>: This combines <strong>vector search with keyword-based search</strong>. While vector search excels at semantic similarities, keyword search is superb for pinpoint accuracy with exact matches. By blending them, you get the best of both worlds, often controlled by a parameter called <code>alpha</code>.</li>
+                    <li><strong>Filtered Vector Search</strong>: This uses <strong>metadata indexes to filter for specific keywords</strong> either before or after the vector search, narrowing down the search space.</li>
+                </ul>
+
+                <div class="hybrid-search-visual">
+                    <h5>Hybrid Search Architecture</h5>
+                    <div class="search-flow">
+                        <div class="search-method">
+                            <h6>🔤 Keyword Search</h6>
+                            <p>Exact matches & precision</p>
+                            <div class="search-example">
+                                <strong>Query:</strong> "machine learning"
+                                <br><strong>Finds:</strong> Exact phrase matches
+                            </div>
+                        </div>
+                        <div class="search-combiner">
+                            <span>+</span>
+                        </div>
+                        <div class="search-method">
+                            <h6>🧠 Vector Search</h6>
+                            <p>Semantic similarity</p>
+                            <div class="search-example">
+                                <strong>Query:</strong> "machine learning"
+                                <br><strong>Finds:</strong> "AI", "neural networks", "deep learning"
+                            </div>
+                        </div>
+                        <div class="search-result">
+                            <span>→</span>
+                            <strong>Combined Results</strong>
+                            <p>Best of both worlds</p>
+                        </div>
+                    </div>
+                </div>
+
+                <p>In practice, starting with filtered vector search or hybrid search is common due to their quicker implementation, allowing you to adjust your strategy and fine-tune your embedding model if needed.</p>
+
+                <h2>3. Post-retrieval: Refining What's Been Found</h2>
+                <p>Once the data has been retrieved, post-retrieval optimisations ensure that the LLM's performance isn't compromised by issues like limited context windows or noisy, irrelevant information.</p>
+
+                <ul>
+                    <li><strong>Prompt Compression</strong>: This method aims to <strong>eliminate unnecessary details from the retrieved data</strong> while preserving its core essence, making the prompt more concise for the LLM.</li>
+                    <li><strong>Re-ranking</strong>: A powerful technique where a <strong>cross-encoder ML model</strong> is used to assign a matching score between the user's input and <em>each</em> retrieved chunk. The retrieved items are then sorted by this score, and only the top N most relevant results are kept. This is computationally more intensive than initial similarity search but highly effective at identifying complex relationships, thus it's applied as a refinement step after the initial retrieval.</li>
+                </ul>
+
+                <h2>The Bottom Line</h2>
+                <p>Advanced RAG isn't just a buzzword; it's a suite of powerful techniques designed to <strong>significantly enhance the RAG algorithm</strong> across its three key stages. By strategically preprocessing data, intelligently adjusting user queries, refining embedding models, using smart filtering, and cleaning up retrieved information, you can build a RAG workflow that delivers more accurate, relevant, and efficient responses from your LLMs. Remember, the best approach will always depend on your specific data and use case, so embrace experimentation!</p>
+
+                <div class="summary-visual">
+                    <h3>🎯 Key Takeaways</h3>
+                    <div class="takeaways-grid">
+                        <div class="takeaway-card">
+                            <div class="takeaway-icon">📋</div>
+                            <h4>Pre-retrieval</h4>
+                            <p>Optimize data & queries before search</p>
+                        </div>
+                        <div class="takeaway-card">
+                            <div class="takeaway-icon">🔍</div>
+                            <h4>Retrieval</h4>
+                            <p>Enhance embedding models & search</p>
+                        </div>
+                        <div class="takeaway-card">
+                            <div class="takeaway-icon">✨</div>
+                            <h4>Post-retrieval</h4>
+                            <p>Refine & compress results</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="post-footer">
+                <div class="post-tags">
+                    <span class="tag">AI</span>
+                    <span class="tag">Machine Learning</span>
+                    <span class="tag">RAG</span>
+                    <span class="tag">LLM</span>
+                </div>
+                <div class="post-share">
+                    <a href="#" class="share-link"><i class="fab fa-twitter"></i> Share</a>
+                    <a href="#" class="share-link"><i class="fab fa-linkedin"></i> Share</a>
+                </div>
+            </footer>
+        </article>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                <h3>Cedric De Schaut</h3>
+                <p>AI enthusiast and tech writer helping you navigate the world of artificial intelligence.</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#about">About</a></li>
+                        <li><a href="index.html#articles">Articles</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                        <li><a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                        <li><a href="#"><i class="fab fa-github"></i> GitHub</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Cedric De Schaut. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 
