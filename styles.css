@@ -445,27 +445,30 @@ body {
     padding: 2rem;
     border-radius: var(--radius);
     box-shadow: var(--shadow);
+    text-align: center;
 }
 
-.form-group {
-    display: flex;
-    gap: 1rem;
+.newsletter-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     margin-bottom: 1rem;
 }
 
-.form-group input {
-    flex: 1;
-    padding: 0.75rem;
-    border: 2px solid var(--border-color);
-    border-radius: var(--radius);
-    font-size: 1rem;
-    transition: var(--transition);
+.newsletter-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px -3px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
 }
 
-.form-group input:focus {
-    outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+.newsletter-cta i {
+    font-size: 1.2rem;
 }
 
 .form-note {

@@ -48,64 +48,14 @@ window.addEventListener('scroll', () => {
     });
 });
 
-// Newsletter form submission
-function initializeNewsletterForm() {
-    const newsletterForm = document.querySelector('.subscription-form');
-    if (newsletterForm) {
-        console.log('Newsletter form found, initializing...');
-        
-        newsletterForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            console.log('Newsletter form submitted');
-            
-            const emailInput = this.querySelector('input[type="email"]');
-            const submitButton = this.querySelector('button[type="submit"]');
-            const email = emailInput ? emailInput.value.trim() : '';
-            
-            console.log('Email input value:', email);
-            
-            // Validate email format
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!email || !emailRegex.test(email)) {
-                showNotification('Please enter a valid email address.', 'error');
-                return;
-            }
-            
-            // Show loading state
-            const originalText = submitButton.textContent;
-            submitButton.textContent = 'Subscribing...';
-            submitButton.disabled = true;
-            
-            try {
-                // Send to backend API
-                const response = await fetch('/subscribe', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ email: email })
-                });
-                
-                const result = await response.json();
-                
-                if (result.success) {
-                    showNotification('Thank you for subscribing! You\'ll receive our latest updates soon.', 'success');
-                    this.reset();
-                } else {
-                    showNotification(result.message || 'Subscription failed. Please try again.', 'error');
-                }
-            } catch (error) {
-                console.error('Subscription error:', error);
-                showNotification('Something went wrong. Please try again later.', 'error');
-            } finally {
-                // Reset button state
-                submitButton.textContent = originalText;
-                submitButton.disabled = false;
-            }
+// Newsletter CTA button tracking
+function initializeNewsletterCTA() {
+    const newsletterCTA = document.querySelector('.newsletter-cta');
+    if (newsletterCTA) {
+        newsletterCTA.addEventListener('click', () => {
+            // Track newsletter click (you can add analytics here)
+            console.log('Newsletter CTA clicked');
         });
-    } else {
-        console.warn('Newsletter form not found - retrying in 1 second...');
-        setTimeout(initializeNewsletterForm, 1000);
     }
 }
 
@@ -582,8 +532,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (aboutSection) statsObserver.observe(aboutSection);
     if (communitySection) statsObserver.observe(communitySection);
     
-    // Initialize newsletter form
-    initializeNewsletterForm();
+    // Initialize newsletter CTA
+    initializeNewsletterCTA();
     
     // Initialize payment handling with email collection
     handlePaymentWithEmail();
