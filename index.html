@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://js.stripe.com/v3/"></script>
+    <script async src="https://js.stripe.com/v3/buy-button.js"></script>
 </head>
 <body>
     <nav class="navbar">
@@ -224,7 +225,11 @@
                             <div class="course-price">$49</div>
                             <a href="ai-seo-course-preview.html" class="btn btn-secondary" style="margin-bottom: 0.5rem;">Preview</a>
                             <div class="course-buttons">
-                                <button class="btn btn-primary course-enroll-btn" data-course="ai-seo">Enroll Now</button>
+                                <stripe-buy-button
+                                  buy-button-id="buy_btn_1RsKnLFLFhg3DX4PytAzBf1H"
+                                  publishable-key="pk_live_51RJB8DFLFhg3DX4PJg8akOnE3aJYXdx0UpCt4vNvdr2SJtAmQvDRuiHLjGAW4HrjcUyrcPvrErkPkBJHSMYLVmGu00FolyBIjK"
+                                >
+                                </stripe-buy-button>
                                 <p class="course-alternative">Or join our <a href="https://www.skool.com/ai-seo-the-2025-community-4247" target="_blank" class="community-link">AI SEO Community</a> for free and get this course + more!</p>
                             </div>
                         </div>
