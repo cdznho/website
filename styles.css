@@ -1702,3 +1702,186 @@ html {
 .section {
     animation: fadeInUp 0.8s ease-out;
 }
+
+/* Limited Spots Banner Styles */
+.limited-spots-banner {
+    background: linear-gradient(135deg, #fee2e2, #fef3c7);
+    border: 2px solid #f59e0b;
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    margin: 2rem 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.limited-spots-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+.spots-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #f59e0b;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+}
+
+.spots-badge i {
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.spots-text {
+    font-size: 1.125rem;
+    color: #92400e;
+    margin: 0;
+    font-weight: 500;
+}
+
+.spots-text strong {
+    color: #b45309;
+    font-size: 1.25rem;
+}
+
+/* Enhanced What's Included Styles */
+.included-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.included-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    background: white;
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    transition: var(--transition);
+}
+
+.included-item:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary-color);
+}
+
+.included-icon {
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.25rem;
+}
+
+.included-content h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.included-content p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Enhanced CTA Card Styles */
+.limited-offer-badge {
+    background: #dc2626;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    animation: pulse 2s infinite;
+}
+
+.pricing-container {
+    margin-bottom: 1.5rem;
+}
+
+.price-current {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    line-height: 1;
+}
+
+.price-regular {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    text-decoration: line-through;
+    margin-top: 0.25rem;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .limited-spots-banner {
+        padding: 1rem;
+        margin: 1.5rem 0;
+    }
+    
+    .spots-text {
+        font-size: 1rem;
+    }
+    
+    .spots-text strong {
+        font-size: 1.125rem;
+    }
+    
+    .included-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .included-item {
+        padding: 1rem;
+    }
+    
+    .included-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+    
+    .price-current {
+        font-size: 2rem;
+    }
+}
