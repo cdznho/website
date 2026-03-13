@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-T7Q7TDSC');</script>
+<!-- End Google Tag Manager -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise SEO for AI Search: Strategy, Governance &amp; Team Structure | Cedric De Schaut</title>
+    <meta name="description" content="How large organisations evolve their SEO programmes for AI search — governance, tooling, content strategy, and team structure for AI-generated visibility. Enterprise guide by Cedric De Schaut.">
+    <link rel="canonical" href="https://www.cedricdeschaut.com/articles/enterprise-seo-for-ai-search/" />
+    <meta property="og:title" content="Enterprise SEO for AI Search | Cedric De Schaut">
+    <meta property="og:description" content="How large organisations evolve their SEO programmes for AI search — governance, tooling, and team structure for AI-generated visibility.">
+    <meta property="og:url" content="https://www.cedricdeschaut.com/articles/enterprise-seo-for-ai-search/">
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="https://www.cedricdeschaut.com/images/ai-seo-article.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Enterprise SEO for AI Search | Cedric De Schaut">
+    <meta name="twitter:description" content="How large organisations evolve their SEO programmes for AI search.">
+    <meta name="twitter:image" content="https://www.cedricdeschaut.com/images/ai-seo-article.png">
+    <meta name="twitter:site" content="@cedricdeschaut">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Article",
+          "headline": "Enterprise SEO for AI Search: Strategy, Governance and Team Structure",
+          "description": "How large organisations evolve their SEO programmes for AI search — governance, tooling, content strategy, and team structure for AI-generated visibility.",
+          "url": "https://www.cedricdeschaut.com/articles/enterprise-seo-for-ai-search/",
+          "datePublished": "2026-03-13",
+          "author": { "@type": "Person", "name": "Cedric De Schaut", "url": "https://www.cedricdeschaut.com" },
+          "publisher": { "@type": "Person", "name": "Cedric De Schaut" },
+          "image": "https://www.cedricdeschaut.com/images/ai-seo-article.png"
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "How should enterprise SEO teams adapt to AI search?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Enterprise SEO teams should start by auditing their current AI citation frequency, fixing crawl access for AI bots, restructuring priority pages for direct-answer format, implementing JSON-LD schema, and building a measurement framework for AI search visibility. A phased approach starting with the highest-value query categories is most effective at scale."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What is the difference between traditional enterprise SEO and enterprise SEO for AI search?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Traditional enterprise SEO focuses on SERP rankings, keyword strategy, link building, and organic traffic. Enterprise SEO for AI search adds layers for AI citation frequency, content structure for LLM extraction, trust signals and E-E-A-T, schema implementation, and AI-specific crawl strategy. The governance and measurement models also differ significantly."
+              }
+            }
+          ]
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.cedricdeschaut.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Articles", "item": "https://www.cedricdeschaut.com/articles/" },
+            { "@type": "ListItem", "position": 3, "name": "Enterprise SEO for AI Search", "item": "https://www.cedricdeschaut.com/articles/enterprise-seo-for-ai-search/" }
+          ]
+        },
+        { "@type": "Person", "@id": "https://www.cedricdeschaut.com/#person", "name": "Cedric De Schaut" }
+      ]
+    }
+    </script>
+    <link rel="stylesheet" href="../../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .article-header { background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); padding: 6rem 0 4rem; margin-top: 70px; }
+        .article-container { max-width: 800px; margin: 0 auto; padding: 0 2rem; }
+        .breadcrumb { display: flex; gap: 0.5rem; align-items: center; font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.5rem; flex-wrap: wrap; }
+        .breadcrumb a { color: var(--primary-color); text-decoration: none; }
+        .article-title { font-size: 2.5rem; font-weight: 700; color: var(--text-primary); margin-bottom: 1rem; line-height: 1.2; }
+        .article-meta { display: flex; gap: 2rem; margin-bottom: 2rem; color: var(--text-secondary); flex-wrap: wrap; }
+        .article-content { background: white; padding: 3rem 2rem; border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 3rem; }
+        .article-content h2 { font-size: 1.75rem; font-weight: 600; margin-top: 2.5rem; margin-bottom: 1rem; color: var(--text-primary); }
+        .article-content h3 { font-size: 1.25rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.75rem; color: var(--text-primary); }
+        .article-content p { margin-bottom: 1.5rem; line-height: 1.7; color: var(--text-secondary); }
+        .article-content ul, .article-content ol { margin-bottom: 1.5rem; padding-left: 1.5rem; color: var(--text-secondary); }
+        .article-content li { margin-bottom: 0.5rem; line-height: 1.6; }
+        .inline-cta-box { background: var(--primary-color); color: white; padding: 2rem; border-radius: var(--radius); margin: 2rem 0; }
+        .inline-cta-box h4 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .inline-cta-box p { opacity: 0.9; margin-bottom: 1rem; font-size: 0.9rem; }
+        .inline-cta-box .btn { background: white; color: var(--primary-color); }
+        .comparison-table { width: 100%; border-collapse: collapse; margin: 2rem 0; border-radius: var(--radius); overflow: hidden; }
+        .comparison-table th, .comparison-table td { padding: 1rem; text-align: left; border-bottom: 1px solid var(--border-color); font-size: 0.9rem; }
+        .comparison-table th { background: var(--primary-color); color: white; font-weight: 600; }
+        .comparison-table tr:last-child td { border-bottom: none; }
+        .faq-list { margin-top: 1rem; }
+        .faq-item { border-bottom: 1px solid var(--border-color); padding: 1rem 0; }
+        .faq-item summary { font-weight: 600; color: var(--text-primary); cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after { content: '+'; font-size: 1.25rem; color: var(--primary-color); }
+        details[open] .faq-item summary::after { content: '−'; }
+        .faq-item p { margin: 0.75rem 0 0; color: var(--text-secondary); line-height: 1.7; }
+        .cta-section { background: var(--primary-color); color: white; padding: 3rem 2rem; border-radius: var(--radius); text-align: center; margin-bottom: 3rem; }
+        .cta-section h3 { font-size: 1.5rem; margin-bottom: 1rem; }
+        .cta-section p { margin-bottom: 1.5rem; opacity: 0.9; }
+        .cta-section .btn { background: white; color: var(--primary-color); }
+        .author-box { display: flex; gap: 1.5rem; align-items: flex-start; background: var(--bg-secondary); border-radius: var(--radius); padding: 1.5rem; margin-bottom: 3rem; }
+        .author-box img { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+        .author-box-text h4 { font-weight: 700; color: var(--text-primary); margin-bottom: 0.25rem; }
+        .author-box-text p { font-size: 0.9rem; color: var(--text-secondary); margin: 0; }
+        @media (max-width: 768px) { .article-title { font-size: 2rem; } .article-meta { flex-direction: column; gap: 0.5rem; } .article-content { padding: 2rem 1.5rem; } .author-box { flex-direction: column; } }
+    </style>
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T7Q7TDSC"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo"><a href="/" style="text-decoration: none; color: inherit;"><h2>Cedric De Schaut</h2></a></div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="/#about" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="/articles/" class="nav-link">Articles</a></li>
+                <li class="nav-item"><a href="/ai-seo-course/" class="nav-link">AI SEO Course</a></li>
+                <li class="nav-item"><a href="/enterprise-ai-seo-training/" class="nav-link">Enterprise Training</a></li>
+                <li class="nav-item"><a href="/#newsletter" class="nav-link">Newsletter</a></li>
+            </ul>
+            <div class="hamburger"><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
+        </div>
+    </nav>
+
+    <header class="article-header">
+        <div class="article-container">
+            <nav class="breadcrumb">
+                <a href="/">Home</a> <span>›</span> <a href="/articles/">Articles</a> <span>›</span> <span>Enterprise SEO for AI Search</span>
+            </nav>
+            <h1 class="article-title">Enterprise SEO for AI search: strategy, governance, and team structure</h1>
+            <div class="article-meta">
+                <span><i class="fas fa-calendar"></i> March 2026</span>
+                <span><i class="fas fa-clock"></i> 13 min read</span>
+                <span><i class="fas fa-user"></i> Cedric De Schaut</span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="article-container">
+            <div class="article-content">
+
+                <p>Enterprise SEO teams face a structural challenge that individual practitioners and small agencies do not: the scale of existing content, the complexity of cross-team governance, and the difficulty of getting organisation-wide alignment on new strategic priorities.</p>
+
+                <p>AI search adds another layer to this complexity. As ChatGPT, Perplexity, Gemini, and Google AI Overviews replace traditional search results for an increasing share of high-value queries, enterprise teams need to evolve their SEO function — not rebuild it from scratch, but extend it significantly.</p>
+
+                <p>This guide covers how large organisations are adapting their SEO programmes for AI search, including the strategy, governance, team structure, and tooling changes required.</p>
+
+                <h2>How traditional enterprise SEO and AI search SEO differ</h2>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Traditional Enterprise SEO</th>
+                            <th>Enterprise SEO for AI Search</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Focuses on SERP rankings and organic traffic</td>
+                            <td>Adds AI citation frequency as a core KPI</td>
+                        </tr>
+                        <tr>
+                            <td>Content strategy driven by keyword volume</td>
+                            <td>Content strategy driven by query categories and AI extraction patterns</td>
+                        </tr>
+                        <tr>
+                            <td>Technical SEO focuses on crawl, index, and speed</td>
+                            <td>Adds AI bot crawl policy, schema coverage, and direct-answer structure</td>
+                        </tr>
+                        <tr>
+                            <td>Author attribution is optional</td>
+                            <td>Author attribution and E-E-A-T signals are required for AI trust</td>
+                        </tr>
+                        <tr>
+                            <td>Reporting to leadership on traffic and rankings</td>
+                            <td>Reporting on AI share of voice alongside traditional metrics</td>
+                        </tr>
+                        <tr>
+                            <td>SEO team operates somewhat in isolation</td>
+                            <td>SEO must align with PR (for external citations) and product (for schema)</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h2>The enterprise-specific AI SEO challenges</h2>
+
+                <h3>Scale of content inventory</h3>
+                <p>Large organisations often have tens of thousands of pages across multiple sub-domains. Not all of these can or should be restructured for AI search. The key is identifying the highest-value 2–5% — the pages that target queries where AI citation would have the most commercial impact — and concentrating optimisation there first.</p>
+
+                <h3>Decentralised content ownership</h3>
+                <p>In enterprise organisations, content is often owned by multiple teams: SEO, content marketing, product, regional teams, and agencies. Implementing consistent AI SEO standards across all of these requires a governance model — a set of shared content standards that every content owner follows regardless of their team.</p>
+
+                <h3>Legacy technical setup</h3>
+                <p>Many enterprises have robots.txt files, CMS configurations, and schema implementations that were last seriously reviewed years ago. AI search makes technical debt more visible and more costly. A comprehensive technical audit is usually the right first step.</p>
+
+                <h3>Measurement gaps</h3>
+                <p>Most enterprise SEO reporting frameworks are built around Google Search Console, rankings tools, and GA4 traffic data. None of these capture AI citation frequency directly. Enterprises need to add a new measurement layer — typically manual prompt testing combined with AI monitoring tools — and integrate this into leadership reporting.</p>
+
+                <div class="inline-cta-box">
+                    <h4>Train your enterprise team on AI SEO</h4>
+                    <p>Private workshops, cohort programmes, and team licences available for heads of SEO, content teams, and digital marketing leads at large organisations.</p>
+                    <a href="/enterprise-ai-seo-training/" class="btn btn-primary" onclick="window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'team_training_click'});">View enterprise training →</a>
+                </div>
+
+                <h2>How to build an enterprise AI SEO governance model</h2>
+
+                <p>A governance model for AI SEO defines three things: what standards all content must meet, who is responsible for implementation, and how compliance is measured and enforced.</p>
+
+                <h3>The AI SEO content standard</h3>
+                <p>Every new piece of content — and every significant update to existing content — should be checked against a shared AI SEO standard before publication. This standard should cover:</p>
+                <ul>
+                    <li>Minimum schema requirements (Article/FAQPage + author attribution)</li>
+                    <li>Content structure requirements (direct-answer opening, FAQ section)</li>
+                    <li>Internal linking requirements (link to pillar; link from pillar)</li>
+                    <li>Author attribution (named author with linked profile)</li>
+                </ul>
+
+                <h3>Ownership and accountability</h3>
+                <p>The head of SEO or VP of digital marketing should own the AI SEO standard. Content owners (editors, copywriters, agencies) are responsible for implementing it. A quarterly AI SEO audit function — ideally owned by the SEO team — reviews compliance across the content inventory.</p>
+
+                <h3>Measurement and reporting</h3>
+                <p>Quarterly AI citation audits (testing 30–50 target queries across ChatGPT, Perplexity, and Gemini) give leadership a comparable, trackable metric. This should be reported alongside organic traffic, rankings, and branded search volume.</p>
+
+                <h2>Team structure for enterprise AI SEO</h2>
+
+                <p>The most effective enterprise AI SEO teams are cross-functional rather than siloed. The roles that need to be involved:</p>
+
+                <ul>
+                    <li><strong>Head of SEO / VP Digital</strong> — owns strategy, governance, and board-level reporting</li>
+                    <li><strong>Technical SEO lead</strong> — owns robots.txt, sitemap, schema, and crawl policy</li>
+                    <li><strong>Content strategist</strong> — defines content standards and pillar/cluster architecture</li>
+                    <li><strong>Content writers/editors</strong> — implement direct-answer formats and FAQ structures</li>
+                    <li><strong>PR and communications</strong> — builds external citation presence in trusted publications</li>
+                    <li><strong>Analytics lead</strong> — builds AI visibility measurement into reporting infrastructure</li>
+                </ul>
+
+                <h2>Related reading</h2>
+                <ul>
+                    <li><a href="/articles/ai-seo/">What is AI SEO? The complete enterprise guide</a></li>
+                    <li><a href="/articles/ai-search-optimization/">AI search optimisation: a tactical guide for enterprise teams</a></li>
+                    <li><a href="/ai-seo-course/">AI SEO course for enterprise teams</a></li>
+                </ul>
+
+                <h2>Frequently asked questions</h2>
+                <div class="faq-list">
+                    <details class="faq-item">
+                        <summary>How should enterprise SEO teams adapt to AI search?</summary>
+                        <p>Enterprise SEO teams should start by auditing their current AI citation frequency, fixing crawl access for AI bots, restructuring priority pages for direct-answer format, implementing JSON-LD schema, and building a measurement framework for AI search visibility. A phased approach starting with the highest-value query categories is most effective at scale.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>What is the difference between traditional enterprise SEO and enterprise SEO for AI search?</summary>
+                        <p>Traditional enterprise SEO focuses on SERP rankings, keyword strategy, link building, and organic traffic. Enterprise SEO for AI search adds AI citation frequency, content structure for LLM extraction, trust signals and E-E-A-T, schema implementation, and AI-specific crawl strategy. The governance and measurement models also differ significantly.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>How do you get enterprise leadership buy-in for AI SEO investment?</summary>
+                        <p>Lead with the business risk framing: if enterprise buyers are using AI tools to research in your category and your brand is not being cited, the gap between your brand and AI-visible competitors will compound over time. Show leadership baseline citation data alongside competitor data, and frame AI SEO as a competitive moat investment, not a cost centre.</p>
+                    </details>
+                </div>
+            </div>
+
+            <div class="cta-section">
+                <h3>Train your enterprise team on AI SEO</h3>
+                <p>Private workshops, cohort programmes, and team licences for large organisations and agency teams.</p>
+                <a href="/enterprise-ai-seo-training/" class="btn btn-primary" onclick="window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'team_training_click'});">Book enterprise training</a>
+            </div>
+
+            <div class="author-box">
+                <img src="../../images/cedric-hero.jpeg" alt="Cedric De Schaut">
+                <div class="author-box-text">
+                    <h4>Cedric De Schaut</h4>
+                    <p>AI SEO instructor, enterprise AI trainer, and Amazon bestselling author. Has taught 10,000+ students and 30+ multinational companies. <a href="/" style="color:var(--primary-color);">Learn more →</a></p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info"><h3>Cedric De Schaut</h3><p>AI SEO instructor and enterprise AI search trainer.</p></div>
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="/">Home</a></li>
+                            <li><a href="/articles/">Articles</a></li>
+                            <li><a href="/ai-seo-course/">AI SEO Course</a></li>
+                            <li><a href="/enterprise-ai-seo-training/">Enterprise Training</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Connect</h4>
+                        <div class="social-links">
+                            <a href="https://www.linkedin.com/in/cedric-de-schaut-428ba191/" class="social-link" aria-label="LinkedIn" target="_blank"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://x.com/cedricdeschaut" class="social-link" aria-label="X (Twitter)" target="_blank"><i class="fab fa-x-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom"><p>&copy; 2025 Cedric De Schaut. All rights reserved.</p></div>
+        </div>
+    </footer>
+    <script src="../../script.js"></script>
+</body>
+</html>

@@ -1,4 +1,20 @@
 User-agent: *
 Disallow: /admin.html
 
+# AI search crawlers — allowed to support AI SEO visibility goals
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
 Sitemap: https://www.cedricdeschaut.com/sitemap.xml
