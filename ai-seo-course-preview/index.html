@@ -16,6 +16,134 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <link rel="stylesheet" href="../styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .sticky-course-cta {
+            position: fixed;
+            left: 50%;
+            bottom: 1rem;
+            transform: translateX(-50%);
+            width: min(960px, calc(100% - 2rem));
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 1rem 1.25rem;
+            border: 1px solid rgba(37, 99, 235, 0.18);
+            border-radius: 18px;
+            background: rgba(15, 23, 42, 0.94);
+            color: #fff;
+            box-shadow: 0 18px 40px rgba(15, 23, 42, 0.28);
+            backdrop-filter: blur(14px);
+            z-index: 1200;
+        }
+
+        .sticky-course-cta__copy {
+            min-width: 0;
+        }
+
+        .sticky-course-cta__eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.35rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #93c5fd;
+        }
+
+        .sticky-course-cta__title {
+            margin: 0;
+            font-size: 1rem;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .sticky-course-cta__meta {
+            margin: 0.2rem 0 0;
+            font-size: 0.92rem;
+            color: rgba(255, 255, 255, 0.78);
+        }
+
+        .sticky-course-cta__actions {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-shrink: 0;
+        }
+
+        .sticky-course-cta__price {
+            text-align: right;
+        }
+
+        .sticky-course-cta__price-current {
+            display: block;
+            font-size: 1.4rem;
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        .sticky-course-cta__price-note {
+            display: block;
+            margin-top: 0.2rem;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .sticky-course-cta__button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.95rem 1.25rem;
+            border-radius: 999px;
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            white-space: nowrap;
+            box-shadow: 0 12px 24px rgba(37, 99, 235, 0.32);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .sticky-course-cta__button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 16px 28px rgba(37, 99, 235, 0.38);
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @media (max-width: 768px) {
+            .sticky-course-cta {
+                left: 1rem;
+                right: 1rem;
+                bottom: 0.75rem;
+                width: auto;
+                transform: none;
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .sticky-course-cta__actions {
+                width: 100%;
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .sticky-course-cta__price {
+                text-align: left;
+            }
+
+            .sticky-course-cta__button {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
@@ -166,10 +294,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             <div class="price-current">$49</div>
                             <div class="price-regular">Regular price: $99</div>
                         </div>
-                        <a href="https://buy.stripe.com/9B600j7PBeQggpqdteaZi02" target="_blank" class="cta-button">Get the Course — $49</a>
+                        <a href="https://buy.stripe.com/9B600j7PBeQggpqdteaZi02" target="_blank" class="cta-button course-buy-link" data-cta-location="hero" data-course-id="ai-seo-enterprise">Get the Course — $49</a>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div class="sticky-course-cta" aria-label="Sticky course purchase call to action">
+        <div class="sticky-course-cta__copy">
+            <div class="sticky-course-cta__eyebrow">
+                <i class="fas fa-bolt"></i>
+                <span>Ready to implement AI SEO at enterprise scale?</span>
+            </div>
+            <p class="sticky-course-cta__title">Get the full course and keep the buy button visible while visitors decide.</p>
+            <p class="sticky-course-cta__meta">2 hours of content, templates, resources, and lifetime access.</p>
+        </div>
+        <div class="sticky-course-cta__actions">
+            <div class="sticky-course-cta__price">
+                <span class="sticky-course-cta__price-current">$49</span>
+                <span class="sticky-course-cta__price-note">Limited offer for the first 50 students</span>
+            </div>
+            <a href="https://buy.stripe.com/9B600j7PBeQggpqdteaZi02" target="_blank" class="sticky-course-cta__button course-buy-link" data-cta-location="sticky" data-course-id="ai-seo-enterprise">Buy the Course</a>
         </div>
     </div>
 
@@ -205,5 +351,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </footer>
 
     <script src="../script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.course-buy-link').forEach(function (link) {
+                link.addEventListener('click', function () {
+                    window.dataLayer = window.dataLayer || [];
+                    window.dataLayer.push({
+                        event: 'course_buy_click',
+                        course_id: link.dataset.courseId || 'ai-seo-enterprise',
+                        cta_location: link.dataset.ctaLocation || 'unknown',
+                        page_path: window.location.pathname,
+                        destination: link.href
+                    });
+                });
+            });
+        });
+    </script>
 </body>
 </html>
