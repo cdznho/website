@@ -262,6 +262,7 @@ body {
     border-radius: var(--radius);
     box-shadow: var(--shadow);
     transition: var(--transition);
+    overflow: hidden;
 }
 
 .logo-card:hover {
@@ -271,9 +272,13 @@ body {
 
 .logo-card img {
     display: block;
-    width: auto;
-    max-width: 100%;
-    max-height: 34px;
+    width: 100%;
+    height: 38px;
+    max-width: 140px;
+    max-height: 38px;
+    object-fit: contain;
+    object-position: center;
+    flex: 0 1 auto;
 }
 
 .logo-wall-note {
@@ -1938,7 +1943,9 @@ html {
     }
 
     .logo-card img {
-        max-height: 28px;
+        height: 30px;
+        max-width: 120px;
+        max-height: 30px;
     }
 
     .limited-spots-banner {
