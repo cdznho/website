@@ -220,6 +220,71 @@ body {
     margin-top: 3rem;
 }
 
+/* Client logo walls */
+.logo-wall-shell {
+    max-width: 1080px;
+    margin: 0 auto;
+}
+
+.logo-kicker {
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--primary-color);
+    margin-bottom: 0.75rem;
+}
+
+.logo-wall-intro {
+    max-width: 760px;
+    margin: 0 auto 2rem;
+    text-align: center;
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+
+.logo-wall {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+    align-items: stretch;
+}
+
+.logo-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 88px;
+    padding: 1rem 1.25rem;
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.logo-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.logo-card img {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    max-height: 34px;
+}
+
+.logo-wall-note {
+    max-width: 760px;
+    margin: 1rem auto 0;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
 /* About Section */
 .about-content {
     display: grid;
@@ -1863,6 +1928,19 @@ html {
 
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
+    .logo-wall {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .logo-card {
+        min-height: 76px;
+        padding: 0.85rem 1rem;
+    }
+
+    .logo-card img {
+        max-height: 28px;
+    }
+
     .limited-spots-banner {
         padding: 1rem;
         margin: 1.5rem 0;
