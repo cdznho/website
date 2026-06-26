@@ -5,7 +5,9 @@
   "main": "newsletter-db.js",
   "scripts": {
     "start": "node newsletter-db.js",
-    "dev": "nodemon newsletter-db.js"
+    "dev": "nodemon newsletter-db.js",
+    "build": "node tools/render-ai-growth-pages.js",
+    "test": "node tools/verify-ai-growth-systems.js"
   },
   "dependencies": {
     "express": "^4.18.2",
