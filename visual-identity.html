@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AI Growth Systems — Visual Identity</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F5F2EA; --paper-2:#EFEBE1; --card:#FBF9F3;
+  --ink:#15171C; --ink-2:#44474F; --ink-3:#52555E; --muted:#6B6E77; --faint:#9A8F78;
+  --green:#15795A; --green-deep:#0F5C45; --green-bright:#1B9B72;
+  --blue:#2C63D6; --clay:#C45B36; --leaf:#1E875B; --amber:#B07A1E;
+  --dark:#15211C; --darker:#10120F;
+  --display:'Bricolage Grotesque',Georgia,serif;
+  --sans:'Archivo',system-ui,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:#2B2E33;font-family:var(--sans);color:var(--ink)}
+
+/* ---------- on-screen toolbar ---------- */
+.toolbar{position:sticky;top:0;z-index:50;background:var(--darker);color:#fff;padding:14px 28px;display:flex;align-items:center;justify-content:space-between;gap:16px;font-family:var(--mono);font-size:12px;letter-spacing:.04em}
+.toolbar b{font-family:var(--display);font-size:14px;letter-spacing:-.01em;font-weight:700}
+.toolbar span{color:#9AA0A6}
+.toolbar button{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;background:var(--green-bright);color:#06150F;border:none;padding:10px 18px;border-radius:100px;cursor:pointer;font-weight:600}
+.toolbar button:hover{background:#23B485}
+
+/* ---------- deck / page frame ---------- */
+.deck{padding:48px 0 96px}
+.page{
+  width:1280px;height:720px;margin:0 auto 40px;background:var(--paper);
+  position:relative;overflow:hidden;box-shadow:0 30px 70px rgba(0,0,0,.45);
+  display:flex;flex-direction:column;
+}
+.page.dark{background:var(--dark);color:var(--paper)}
+.page.darker{background:var(--darker);color:var(--paper)}
+.page__pad{padding:60px 68px;flex:1;display:flex;flex-direction:column;position:relative;z-index:2}
+.dotgrid{position:absolute;inset:0;background-image:radial-gradient(rgba(21,23,28,.10) 1px,transparent 1px);background-size:26px 26px;z-index:1}
+.page.dark .dotgrid,.page.darker .dotgrid{background-image:radial-gradient(rgba(245,242,234,.08) 1px,transparent 1px)}
+.footer{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:space-between;align-items:center;padding:0 68px 28px;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);z-index:2}
+.page.dark .footer,.page.darker .footer{color:rgba(245,242,234,.45)}
+.footer b{color:var(--green);font-weight:500}
+.page.dark .footer b,.page.darker .footer b{color:var(--green-bright)}
+
+.kicker{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--green);font-weight:500}
+.page.dark .kicker,.page.darker .kicker{color:var(--green-bright)}
+h1.big{font-family:var(--display);font-weight:700;letter-spacing:-.03em;line-height:1.02;margin:12px 0 0;font-size:54px}
+h2.sec{font-family:var(--display);font-weight:700;letter-spacing:-.025em;line-height:1.05;margin:10px 0 18px;font-size:38px}
+p.lead{font-size:17px;line-height:1.6;color:var(--ink-2);max-width:680px;margin:0}
+.page.dark p.lead,.page.darker p.lead{color:rgba(245,242,234,.7)}
+.tag{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+
+/* ---------- logomark ---------- */
+.mark path{stroke-linecap:round}
+
+/* ---------- generic helpers ---------- */
+.row{display:flex;gap:40px}
+.col{flex:1;min-width:0}
+.swatch{border-radius:14px;display:flex;flex-direction:column;justify-content:flex-end;padding:16px 18px;font-family:var(--mono);color:#fff}
+.swatch small{display:block;opacity:.85;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px}
+.swatch b{font-size:14px;letter-spacing:.01em}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{background:var(--card);border:1px solid #E4DECB;border-radius:14px;padding:22px}
+table.spec{width:100%;border-collapse:collapse;font-size:13.5px}
+table.spec td{padding:9px 0;border-bottom:1px solid rgba(21,23,28,.10)}
+table.spec td:first-child{font-family:var(--mono);color:var(--muted);width:34%;text-transform:uppercase;font-size:11px;letter-spacing:.08em}
+
+@media print{
+  @page{size:1280px 720px;margin:0}
+  body{background:#fff}
+  .toolbar{display:none}
+  .deck{padding:0}
+  .page{margin:0;box-shadow:none;break-after:page;page-break-after:always}
+}
+</style>
+</head>
+<body>
+
+<div class="toolbar no-print">
+  <div><b>AI Growth Systems</b> <span>— Visual Identity · 24 pages</span></div>
+  <span>Open in Chrome → File ▸ Print ▸ Save as PDF (paper size: any / Custom 1280×720) to export a real PDF.</span>
+  <button onclick="window.print()">Print / Save as PDF</button>
+</div>
+
+<div class="deck">
+
+<!-- ============ 01 COVER ============ -->
+<div class="page darker">
+  <div class="dotgrid"></div>
+  <div class="page__pad" style="justify-content:center;align-items:flex-start">
+    <svg class="mark" width="86" height="86" viewBox="0 0 200 200" fill="none">
+      <path d="M105.58,20.19 A80,80 0 0 1 179.81,94.42" stroke="#2C63D6" stroke-width="22"/>
+      <path d="M179.81,105.58 A80,80 0 0 1 105.58,179.81" stroke="#C45B36" stroke-width="22"/>
+      <path d="M94.42,179.81 A80,80 0 0 1 20.19,105.58" stroke="#1E875B" stroke-width="22"/>
+      <path d="M20.19,94.42 A80,80 0 0 1 94.42,20.19" stroke="#B07A1E" stroke-width="22"/>
+    </svg>
+    <div style="margin-top:36px" class="kicker">Brand guidelines · Jun 2026</div>
+    <h1 class="big" style="font-size:72px;margin-top:14px">AI Growth<br>Systems</h1>
+    <p class="lead" style="margin-top:18px;font-size:19px">Visual identity for the personal brand of</p>
+    <p style="font-family:var(--mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--green-bright);margin-top:8px">Cedric De Schaut</p>
+  </div>
+  <div class="footer"><span>AI Growth Systems</span><span>Visual Identity — 01 / 24</span></div>
+</div>
+
+<!-- ============ 02 CONTENTS ============ -->
+<div class="page">
+  <div class="page__pad">
+    <span class="kicker">Contents</span>
+    <h2 class="sec">What's inside</h2>
+    <div class="row" style="margin-top:18px;gap:60px">
+      <div class="col">
+        <table class="spec">
+          <tr><td>01</td><td style="font-family:var(--sans);text-transform:none;color:var(--ink)">Cover</td></tr>
+          <tr><td>02</td><td style="font-family:var(--sans);text-transform:none;color:var(--ink)">Contents</td></tr>
+          <tr><td>03</td><td style="font-family:var(--sans);text-transform:none;color:var(--ink)">Moodboard</td></tr>
+          <tr><td>04–10</td><td style="font-family:var(--sans);text-transform:none;color:var(--ink)">Logo — primary, secondary, logotype, logomark, clearspace &amp; size, implementations</td></tr>
+        </table>
+      </div>
+      <div class="col">
+        <table class="spec">
+          <tr><td>11–14</td><td style="font-family:var(--sans);text-transform:none;color:var(--ink)">Color — palette, tints &amp; shades, usage guidelines</td></tr>
+          <tr><td>15–18</td><td style="font-family:var(--sans);text-transform:none;color:var(--ink)">Typography — primary typeface, secondary typeface, hierarchy &amp; usage</td></tr>
+          <tr><td>19–23</td><td style="font-family:var(--sans);text-transform:none;color:var(--ink)">Graphic style — photography, icons, patterns &amp; textures, layout principles</td></tr>
+          <tr><td>24</td><td style="font-family:var(--sans);text-transform:none;color:var(--ink)">Thank you</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="footer"><span>AI Growth Systems</span><span>Visual Identity — 02 / 24</span></div>
+</div>
+
+<!-- ============ 03 MOODBOARD ============ -->
+<div class="page darker">
+  <div class="page__pad">
+    <span class="kicker">Mood</span>
+    <h2 class="sec" style="color:var(--paper)">Moodboard</h2>
+    <div class="grid4" style="flex:1;margin-top:8px">
+      <div style="background:var(--green);border-radius:14px"></div>
+      <div style="border-radius:14px;overflow:hidden;position:relative">
+        <img src="images/cedric-hero.jpeg" style="width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.15) brightness(1.05)">
+        <div style="position:absolute;inset:0;background:var(--green);mix-blend-mode:multiply;opacity:.55"></div>
+      </div>
+      <div style="background:repeating-linear-gradient(45deg,#2C63D6 0 10px,#1E3A66 10px 20px);border-radius:14px"></div>
+      <div style="background:var(--clay);border-radius:14px;display:flex;align-items:center;justify-content:center">
+        <span style="font-family:var(--display);font-weight:800;font-size:46px;color:#fff;letter-spacing:-.02em">FOUND</span>
+      </div>
+      <div style="background:var(--paper);border-radius:14px;display:flex;align-items:center;justify-content:center">
+        <span style="font-family:var(--mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink)">Systems &gt; tactics</span>
+      </div>
+      <div style="background:var(--amber);border-radius:14px"></div>
+      <div style="background:var(--leaf);border-radius:14px;display:flex;align-items:center;justify-content:center">
+        <span style="font-family:var(--display);font-weight:800;font-size:40px;color:#fff;letter-spacing:-.02em">LEAN</span>
+      </div>
+      <div style="background:radial-gradient(circle at 30% 30%,#2C63D6,#15211C 70%);border-radius:14px"></div>
+    </div>
+    <p class="lead" style="margin-top:18px;color:rgba(245,242,234,.6);font-size:14px">Earthy paper tones grounded by ink-black type, lit up by four working colors — one per growth system. Practical, editorial, slightly technical. Never glossy, never corporate.</p>
+  </div>
+  <div class="footer"><span>AI Growth Systems</span><span>Visual Identity — 03 / 24</span></div>
+</div>
+
+<!-- ============ 04 DIVIDER: LOGO ============ -->
+<div class="page dark">
+  <div class="dotgrid"></div>
+  <div class="page__pad" style="justify-content:center">
+    <span class="kicker">Section 01</span>
+    <h1 class="big" style="color:var(--paper);font-size:64px">Logo</h1>
+  </div>
+  <div class="footer"><span>AI Growth Systems</span><span>Visual Identity — 04 / 24</span></div>
+</div>
+
+<!-- ============ 05 PRIMARY LOGO ============ -->
+<div class="page">
+  <div class="page__pad" style="align-items:center;justify-content:center">
+    <span class="kicker" style="align-self:flex-start">Logo — Primary</span>
+    <div style="flex:1;display:flex;align-items:center;justify-content:center;gap:28px">
+      <svg class="mark" width="120" height="120" viewBox="0 0 200 200" fill="none">
+        <path d="M105.58,20.19 A80,80 0 0 1 179.81,94.42" stroke="#2C63D6" stroke-width="22"/>
+        <path d="M179.81,105.58 A80,80 0 0 1 105.58,179.81" stroke="#C45B36" stroke-width="22"/>
+        <path d="M94.42,179.81 A80,80 0 0 1 20.19,105.58" stroke="#1E875B" stroke-width="22"/>
+        <path d="M20.19,94.42 A80,80 0 0 1 94.42,20.19" stroke="#B07A1E" stroke-width="22"/>
+      </svg>
+      <div>
+        <div style="font-family:var(--display);font-weight:700;font-size:42px;letter-spacing:-.02em">AI Growth Systems</div>
+        <div style="font-family:var(--mono);font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:6px">by Cedric De Schaut</div>
+      </div>
+    </div>
+    <p class="lead" style="text-align:center;align-self:center">The primary lockup pairs the loop logomark with the full wordmark. Use it wherever the brand introduces itself for the first time — site header, cover slides, signatures.</p>
+  </div>
+  <div class="footer"><span>AI Growth Systems</span><span>Visual Identity — 05 / 24</span></div>
+</div>
+
+<!-- ============ 06 SECONDARY LOGO ============ -->
+<div class="page">
+  <div class="page__pad">
+    <span class="kicker">Logo — Secondary</span>
+    <h2 class="sec">Stacked &amp; reversed lockups</h2>
+    <div class="row" style="flex:1;align-items:center">
+      <div class="col card" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:40px">
+        <svg class="mark" width="64" height="64" viewBox="0 0 200 200" fill="none">
+          <path d="M105.58,20.19 A80,80 0 0 1 179.81,94.42" stroke="#2C63D6" stroke-width="22"/>
+          <path d="M179.81,105.58 A80,80 0 0 1 105.58,179.81" stroke="#C45B36" stroke-width="22"/>
+          <path d="M94.42,179.81 A80,80 0 0 1 20.19,105.58" stroke="#1E875B" stroke-width="22"/>
+          <path d="M20.19,94.42 A80,80 0 0 1 94.42,20.19" stroke="#B07A1E" stroke-width="22"/>
+        </svg>
+        <div style="text-align:center">
+          <div style="font-family:var(--display);font-weight:700;font-size:22px;letter-spacing:-.01em">AI Growth Systems</div>
+          <div style="font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:4px">by Cedric De Schaut</div>
+        </div>
+        <span class="tag" style="margin-top:6px">Stacked — square / social avatars</span>
+      </div>
+      <div class="col" style="background:var(--dark);border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:40px">
+        <svg class="mark" width="64" height="64" viewBox="0 0 200 200" fill="none">
+          <path d="M105.58,20.19 A80,80 0 0 1 179.81,94.42" stroke="#F5F2EA" stroke-width="22"/>
+          <path d="M179.81,105.58 A80,80 0 0 1 105.58,179.81" stroke="#F5F2EA" stroke-width="22" opacity=".7"/>
+          <path d="M94.42,179.81 A80,80 0 0 1 20.19,105.58" stroke="#F5F2EA" stroke-width="22" opacity=".4"/>
+          <path d="M20.19,94.42 A80,80 0 0 1 94.42,20.19" stroke="#F5F2EA" stroke-width="22" opacity=".7"/>
+        </svg>
+        <div style="text-align:center">
+          <div style="font-family:var(--display);font-weight:700;font-size:22px;color:var(--paper);letter-spacing:-.01em">AI Growth Systems</div>
+          <div style="font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(245,242,234,.5);margin-top:4px">by Cedric De Schaut</div>
+        </div>
+        <span class="tag" style="margin-top:6px;color:rgba(245,242,234,.5)">Reversed — dark backgrounds</span>
+      </div>
+    </div>
+  </div>
+  <div class="footer"><span>AI Growth Systems</span><span>Visual Identity — 06 / 24</span></div>
+</div>
+
+<!-- ============ 07 LOGOTYPE ============ -->
+<div class="page">
+  <div class="page__pad" style="justify-content:center">
+    <span class="kicker">Logo — Logotype</span>
+    <div style="flex:1;display:flex;align-items:center;justify-content:center">
+      <div style="font-family:var(--display);font-weight:700;font-size:88px;letter-spacing:-.03em;line-height:1">AI Growth<br>Systems</div>
+    </div>
+    <table class="spec" style="max-width:560px">
+      <tr><td>Typeface</td><td style="font-family:var(--sans);text-transform:none">Bricolage Grotesque, Bold (700)</td></tr>
+      <tr><td>Tracking</td><td style="font-family:var(--sans);text-transform:none">-3% letter-spacing</td></tr>
+      <tr><td>Color</td><td style="font-family:var(--sans);text-transform:none">Ink #15171C on Paper, or Paper #F5F2EA on Dark</td></tr>
+      <tr><td>Use alone when</td><td style="font-family:var(--sans);text-transform:none">space is tight, or the mark already appears elsewhere on the page</td></tr>
+    </table>
+  </div>
+  <div class="footer"><span>AI Growth Systems</span><span>Visual Identity — 07 / 24</span></div>
+</div>
+
+<!-- ============ 08 LOGOMARK ============ -->
+<div class="page">
+  <div class="page__pad">
+    <span class="kicker">Logo — Logomark</span>
+    <h2 class="sec">The growth loop</h2>
+    <div class="row" style="flex:1;align-items:center">
+      <div class="col" style="display:flex;align-items:center;justify-content:center">
+        <svg width="280" height="280" viewBox="0 0 200 200" fill="none">
+          <circle cx="100" cy="100" r="80" fill="none" stroke="#15171C" stroke-width="0.5" stroke-dasharray="2 4" opacity=".25"/>
+          <path d="M105.58,20.19 A80,80 0 0 1 179.81,94.42" stroke="#2C63D6" stroke-width="22" stroke-linecap="round"/>
+          <path d="M179.81,105.58 A80,80 0 0 1 105.58,179.81" stroke="#C45B36" stroke-width="22" stroke-linecap="round"/>
+          <path d="M94.42,179.81 A80,80 0 0 1 20.19,105.58" stroke="#1E875B" stroke-width="22" stroke-linecap="round"/>
+          <path d="M20.19,94.42 A80,80 0 0 1 94.42,20.19" stroke="#B07A1E" stroke-width="22" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="col">
+        <p class="lead">Four arcs, four systems, one continuous loop — Get Found, Get Customers, Run Lean, Build Assets, feeding back into each other. It's the same diagram that drives the homepage hero, formalized as a standalone mark.</p>
+        <table class="spec" style="margin-top:18px">
+          <tr><td>Get Found</td><td style="font-family:var(--sans);text-transform:none">#2C63D6</td></tr>
+          <tr><td>Get Customers</td><td style="font-family:var(--sans);text-transform:none">#C45B36</td></tr>
+          <tr><td>Run Lean</td><td style="font-family:var(--sans);text-transform:none">#1E875B</td></tr>
+          <tr><td>Build Assets</td><td style="font-family:var(--sans);text-transform:none">#B07A1E</td></tr>
+          <tr><td>Construction</td><td style="font-family:var(--sans);text-transform:none">4 arcs on an 80px-radius circle, 8° gaps, round caps, 22px stroke at 200px viewbox</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="footer"><span>AI Growth Systems</span><span>Visual Identity — 08 / 24</span></div>
+</div>
+
+<!-- ============ 09 CLEARSPACE & SIZE ============ -->
+<div class="page">
+  <div class="page__pad">
+    <span class="kicker">Logo — Clearspace &amp; size</span>
+    <h2 class="sec">Give it room to breathe</h2>
+    <div class="row" style="flex:1;align-items:center">
+      <div class="col" style="display:flex;align-items:center;justify-content:center">
+        <div style="position:relative;width:220px;height:220px;border:1.5px dashed rgba(21,23,28,.3);display:flex;align-items:center;justify-content:center">
+          <svg width="120" height="120" viewBox="0 0 200 200" fill="none">
+            <path d="M105.58,20.19 A80,80 0 0 1 179.81,94.42" stroke="#2C63D6" stroke-width="22" stroke-linecap="round"/>
+            <path d="M179.81,105.58 A80,80 0 0 1 105.58,179.81" stroke="#C45B36" stroke-width="22" stroke-linecap="round"/>
+            <path d="M94.42,179.81 A80,80 0 0 1 20.19,105.58" stroke="#1E875B" stroke-width="22" stroke-linecap="round"/>
+            <path d="M20.19,94.42 A80,80 0 0 1 94.42,20.19" stroke="#B07A1E" stroke-width="22" stroke-linecap="round"/>
+          </svg>
+          <span style="position:absolute;top:-22px;font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.08em">x</span>
+        </div>
+      </div>
+      <div class="col">
+        <p class="lead">Clearspace equals half the logomark's height (x) on every side — no text, no edge, no other graphic inside that zone.</p>
+        <table class="spec" style="margin-top:18px">
+          <tr><td>Min size — digital</td><td style="font-family:var(--sans);text-transform:none">24px height (favicon: 16px, simplified to 2 arcs)</td></tr>
+          <tr><td>Min size — print</td><td style="font-family:var(--sans);text-transform:none">10mm height</td></tr>
+          <tr><td>Min size — full lockup</td><td style="font-family:var(--sans);text-transform:none">120px wide</td></tr>
+          <tr><td>Never</td><td style="font-family:var(--sans);text-transform:none">stretch, recolor outside the palette, rotate, or drop a shadow</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="footer"><span>AI Growth Systems</span><span>Visual Identity — 09 / 24</span></div>
+</div>
+
+<!-- ============ 10 IMPLEMENTATIONS ============ -->
+<div class="page dark">
+  <div class="page__pad">
+    <span class="kicker">Logo — Implementations</span>
+    <h2 class="sec" style="color:var(--paper)">In context</h2>
+    <div class="grid4" style="flex:1">
+      <div class="card" style="background:var(--paper);display:flex;align-items:center;gap:10px;padding:18px">
+        <svg width="30" height="30" viewBox="0 0 200 200" fill="none">
+          <path d="M105.58,20.19 A80,80 0 0 1 179.81,94.42" stroke="#2C63D6" stroke-width="26" stroke-linecap="round"/>
+          <path d="M179.81,105.58 A80,80 0 0 1 105.58,179.81" stroke="#C45B36" stroke-width="26" stroke-linecap="round"/>
+          <path d="M94.42,179.81 A80,80 0 0 1 20.19,105.58" stroke="#1E875B" stroke-width="26" stroke-linecap="round"/>
+          <path d="M20.19,94.42 A80,80 0 0 1 94.42,20.19" stroke="#B07A1E" stroke-width="26" stroke-linecap="round"/>
+        </svg>
+        <b style="font-family:var(--display);font-size:14px">AI Growth Systems</b>
+      </div>
+      <div class="card" style="background:#06150F;display:flex;align-items:center;justify-content:center">
+        <div style="width:46px;height:46px;border-radius:11px;background:var(--green);display:flex;align-items:center;justify-content:center">
+          <svg width="26" height="26" viewBox="0 0 200 200" fill="none">
+            <path d="M105.58,20.19 A80,80 0 0 1 179.81,94.42" stroke="#fff" stroke-width="26" stroke-linecap="round"/>
+            <path d="M179.81,105.58 A80,80 0 0 1 105.58,179.81" stroke="#fff" stroke-width="26" stroke-linecap="round" opacity=".7"/>
+            <path d="M94.42,179.81 A80,80 0 0 1 20.19,105.58" stroke="#fff" stroke-width="26" stroke-linecap="round" opacity=".4"/>
+            <path d="M20.19,94.42 A80,80 0 0 1 94.42,20.19" stroke="#fff" stroke-width="26" stroke-linecap="round" opacity=".7"/>
+          </svg>
+        </div>
+        <span class="tag" style="position:absolute;bottom:14px;color:rgba(245,242,234,.4)">Favicon / app icon</span>
+      </div>
+      <div class="card" style="background:var(--card);position:relative;overflow:hidden">
+        <img src="images/cedric-hero.jpeg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1) brightness(.6)">
+        <div style="position:relative;z-index:1;display:flex;align-items:center;gap:8px">
+          <svg width="22" height="22" viewBox="0 0 200 200" fill="none">
+            <path d="M105.58,20.19 A80,80 0 0 1 179.81,94.42" stroke="#fff" stroke-width="26" stroke-linecap="round"/>
+            <path d="M179.81,105.58 A80,80 0 0 1 105.58,179.81" stroke="#fff" stroke-width="26" stroke-linecap="round"/>
+            <path d="M94.42,179.81 A80,80 0 0 1 20.19,105.58" stroke="#fff" stroke-width="26" stroke-linecap="round"/>
+            <path d="M20.19,94.42 A80,80 0 0 1 94.42,20.19" stroke="#fff" stroke-width="26" stroke-linecap="round"/>
+          </svg>
+          <b style="font-family:var(--display);font-size:12.5px;color:#fff">on photography</b>
+        </div>
+      </div>
+      <div class="card" style="background:var(--blue);display:flex;align-items:center;justify-content:center">
+        <svg width="30" height="30" viewBox="0 0 200 200" fill="none">
+          <path d="M105.58,20.19 A80,80 0 0 1 179.81,94.42" stroke="#fff" stroke-width="26" stroke-linecap="round"/>
+          <path d="M179.81,105.58 A80,80 0 0 1 105.58,179.81" stroke="#fff" stroke-width="26" stroke-linecap="round" opacity=".7"/>
+          <path d="M94.42,179.81 A80,80 0 0 1 20.19,105.58" stroke="#fff" stroke-width="26" stroke-linecap="round" opacity=".4"/>
+          <path d="M20.19,94.42 A80,80 0 0 1 94.42,20.19" stroke="#fff" stroke-width="26" stroke-linecap="round" opacity=".7"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+  <div class="footer"><span>AI Growth Systems</span><span>Visual Identity — 10 / 24</span></div>
+</div>
+
+<!-- ============ 11 DIVIDER: COLOR ============ -->
+<div class="page dark">
+  <div class="dotgrid"></div>
+  <div class="page__pad" style="justify-content:center">
+    <span class="kicker">Section 02</span>
+    <h1 class="big" style="color:var(--paper);font-size:64px">Color</h1>
+  </div>
+  <div class="footer"><span>AI Growth Systems</span><span>Visual Identity — 11 / 24</span></div>
+</div>
+
+<!-- ============ 12 COLOR PALETTE ============ -->
+<div class="page">
+  <div class="page__pad">
+    <span class="kicker">Color — Palette</span>
+    <h2 class="sec">Paper, ink, and four working colors</h2>
+    <div class="grid4" style="flex:1">
+      <div class="swatch" style="background:var(--paper);color:var(--ink);border:1px solid #E4DECB"><small>Background</small><b>Paper · #F5F2EA</b></div>
+      <div class="swatch" style="background:var(--ink)"><small>Text</small><b>Ink · #15171C</b></div>
+      <div class="swatch" style="background:var(--green)"><small>Brand</small><b>Green · #15795A</b></div>
+      <div class="swatch" style="background:var(--dark)"><small>Dark surface</small><b>Dark · #15211C</b></div>
+      <div class="swatch" style="background:var(--blue)"><small>Get Found</small><b>Blue · #2C63D6</b></div>
+      <div class="swatch" style="background:var(--clay)"><small>Get Customers</small><b>Clay · #C45B36</b></div>
+      <div class="swatch" style="background:var(--leaf)"><small>Run Lean</small><b>Leaf · #1E875B</b></div>
+      <div class="swatch" style="background:var(--amber)"><small>Build Assets</small><b>Amber · #B07A1E</b></div>
+    </div>
+    <p class="lead" style="margin-top:18px;font-size:14px">Paper + Ink carry every page. Green is the single brand accent. Blue / Clay / Leaf / Amber are reserved exclusively for their matching system — never used decoratively elsewhere.</p>
+  </div>
+  <div class="footer"><span>AI Growth Systems</span><span>Visual Identity — 12 / 24</span></div>
+</div>
+
+<!-- ============ 13 TINTS & SHADES ============ -->
+<div class="page">
+  <div class="page__pad">
+    <span class="kicker">Color — Tints &amp; shades</span>
+    <h2 class="sec">Five-step ramps</h2>
+    <div style="flex:1;display:flex;flex-direction:column;gap:14px;justify-content:center">
+      <div style="display:flex;gap:6px;height:54px">
+        <div style="flex:1;background:var(--green);border-radius:8px 0 0 8px;position:relative"><div style="position:absolute;inset:0;background:var(--paper);opacity:.7"></div></div>
+        <div style="flex:1;background:var(--green);position:relative"><div style="position:absolute;inset:0;background:var(--paper);opacity:.5"></div></div>
+        <div style="flex:1;background:var(--green)"></div>
+        <div style="flex:1;background:var(--green);position:relative"><div style="position:absolute;inset:0;background:var(--ink);opacity:.25"></div></div>
+        <div style="flex:1;background:var(--green);border-radius:0 8px 8px 0;position:relative"><div style="position:absolute;inset:0;background:var(--ink);opacity:.5"></div></div>
+      </div>
+      <div style="display:flex;gap:6px;height:54px">
+        <div style="flex:1;background:var(--blue);border-radius:8px 0 0 8px;position:relative"><div style="position:absolute;inset:0;background:var(--paper);opacity:.7"></div></div>
+        <div style="flex:1;background:var(--blue);position:relative"><div style="position:absolute;inset:0;background:var(--paper);opacity:.5"></div></div>
+        <div style="flex:1;background:var(--blue)"></div>
+        <div style="flex:1;background:var(--blue);position:relative"><div style="position:absolute;inset:0;background:var(--ink);opacity:.25"></div></div>
+        <div style="flex:1;background:var(--blue);border-radius:0 8px 8px 0;position:relative"><div style="position:absolute;inset:0;background:var(--ink);opacity:.5"></div></div>
+      </div>
+      <div style="display:flex;gap:6px;height:54px">
+        <div style="flex:1;background:var(--clay);border-radius:8px 0 0 8px;position:relative"><div style="position:absolute;inset:0;background:var(--paper);opacity:.7"></div></div>
+        <div style="flex:1;background:var(--clay);position:relative"><div style="position:absolute;inset:0;background:var(--paper);opacity:.5"></div></div>
+        <div style="flex:1;background:var(--clay)"></div>
+        <div style="flex:1;background:var(--clay);position:relative"><div style="position:absolute;inset:0;background:var(--ink);opacity:.25"></div></div>
+        <div style="flex:1;background:var(--clay);border-radius:0 8px 8px 0;position:relative"><div style="position:absolute;inset:0;background:var(--ink);opacity:.5"></div></div>
+      </div>
+      <div style="display:flex;gap:6px;height:54px">
+        <div style="flex:1;background:var(--leaf);border-radius:8px 0 0 8px;position:relative"><div style="position:absolute;inset:0;background:var(--paper);opacity:.7"></div></div>
+        <div style="flex:1;background:var(--leaf);position:relative"><div style="position:absolute;inset:0;background:var(--paper);opacity:.5"></div></div>
+        <div style="flex:1;background:var(--leaf)"></div>
+        <div style="flex:1;background:var(--leaf);position:relative"><div style="position:absolute;inset:0;background:var(--ink);opacity:.25"></div></div>
+        <div style="flex:1;background:var(--leaf);border-radius:0 8px 8px 0;position:relative"><div style="position:absolute;inset:0;background:var(--ink);opacity:.5"></div></div>
+      </div>
+      <div style="display:flex;gap:6px;height:54px">
+        <div style="flex:1;background:var(--amber);border-radius:8px 0 0 8px;position:relative"><div style="position:absolute;inset:0;background:var(--paper);opacity:.7"></div></div>
+        <div style="flex:1;background:var(--amber);position:relative"><div style="position:absolute;inset:0;background:var(--paper);opacity:.5"></div></div>
+        <div style="flex:1;background:var(--amber)"></div>
+        <div style="flex:1;background:var(--amber);position:relative"><div style="position:absolute;inset:0;background:var(--ink);opacity:.25"></div></div>
+        <div style="flex:1;background:var(--amber);border-radius:0 8px 8px 0;position:relative"><div style="position:absolute;inset:0;background:var(--ink);opacity:.5"></div></div>
+      </div>
+    </div>
+    <p class="lead" style="font-size:13px;margin-top:8px">Lightest → base → darkest, left to right. Use tints for subtle backgrounds and hover states; use shades for text-on-color and pressed states.</p>
+  </div>
+  <div class="footer"><span>AI Growth Systems</span><span>Visual Identity — 13 / 24</span></div>
+</div>
+
+<!-- ============ 14 COLOR USAGE ============ -->
+<div class="page">
+  <div class="page__pad">
+    <span class="kicker">Color — Usage guidelines</span>
+    <h2 class="sec">80 / 15 / 5</h2>
+    <div class="row" style="flex:1;align-items:center">
+      <div class="col" style="display:flex;gap:4px;height:200px">
+        <div style="flex:8;background:var(--paper);border:1px solid #E4DECB;border-radius:8px 0 0 8px;display:flex;align-items:flex-end;padding:10px"><span class="tag">80% Paper / Ink</span></div>
+        <div style="flex:1.5;background:var(--green);border-radius:0;display:flex;align-items:flex-end;padding:10px"><span class="tag" style="color:rgba(255,255,255,.7)">15%</span></div>
+        <div style="flex:.5;background:linear-gradient(90deg,var(--blue),var(--clay),var(--leaf),var(--amber));border-radius:0 8px 8px 0"></div>
+      </div>
+      <div class="col">
+        <table class="spec">
+          <tr><td>80%</td><td style="font-family:var(--sans);text-transform:none">Paper background, Ink text — every page starts neutral</td></tr>
+          <tr><td>15%</td><td style="font-family:var(--sans);text-transform:none">Green — CTAs, links, the single brand accent</td></tr>
+          <tr><td>5%</td><td style="font-family:var(--sans);text-transform:none">Blue / Clay / Leaf / Amber — one system, one color, never mixed on the same element</td></tr>
+          <tr><td>Don't</td><td style="font-family:var(--sans);text-transform:none">use a pillar color for anything outside that pillar, or place two pillar colors directly touching</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="footer"><span>AI Growth Systems</span><span>Visual Identity — 14 / 24</span></div>
+</div>
+
+<!-- ============ 15 DIVIDER: TYPE ============ -->
+<div class="page dark">
+  <div class="dotgrid"></div>
+  <div class="page__pad" style="justify-content:center">
+    <span class="kicker">Section 03</span>
+    <h1 class="big" style="color:var(--paper);font-size:64px">Typography</h1>
+  </div>
+  <div class="footer"><span>AI Growth Systems</span><span>Visual Identity — 15 / 24</span></div>
+</div>
+
+<!-- ============ 16 PRIMARY TYPEFACE ============ -->
+<div class="page">
+  <div class="page__pad">
+    <span class="kicker">Typography — Primary typeface</span>
+    <h2 class="sec">Bricolage Grotesque</h2>
+    <div style="font-family:var(--display);font-weight:700;font-size:64px;letter-spacing:-.02em;line-height:1.02">Aa Bb Cc<br>0123456789</div>
+    <table class="spec" style="margin-top:24px;max-width:760px">
+      <tr><td>Role</td><td style="font-family:var(--sans);text-transform:none">Display — H1–H3, kickers, the wordmark</td></tr>
+      <tr><td>Weights used</td><td style="font-family:var(--sans);text-transform:none">500, 600, 700, 800 (variable, optical size 12–96)</td></tr>
+      <tr><td>Source</td><td style="font-family:var(--sans);text-transform:none">Google Fonts — free, open license</td></tr>
+      <tr><td>Tracking</td><td style="font-family:var(--sans);text-transform:none">-2.5% to -3% at display sizes</td></tr>
+    </table>
+  </div>
+  <div class="footer"><span>AI Growth Systems</span><span>Visual Identity — 16 / 24</span></div>
+</div>
+
+<!-- ============ 17 SECONDARY TYPEFACE ============ -->
+<div class="page">
+  <div class="page__pad">
+    <span class="kicker">Typography — Secondary typefaces</span>
+    <h2 class="sec">Archivo &amp; IBM Plex Mono</h2>
+    <div class="row" style="flex:1">
+      <div class="col">
+        <div style="font-family:var(--sans);font-weight:600;font-size:30px">Archivo — body &amp; UI</div>
+        <p style="font-family:var(--sans);font-size:16px;line-height:1.6;color:var(--ink-2);margin-top:12px">Set in 400–600 weight for paragraphs, buttons, navigation, and card copy. It's the workhorse: legible at small sizes, neutral enough to let the display face and the accent colors do the talking.</p>
+      </div>
+      <div class="col">
+        <div style="font-family:var(--mono);font-weight:500;font-size:26px;letter-spacing:.02em">IBM Plex Mono — labels</div>
+        <p style="font-family:var(--sans);font-size:16px;line-height:1.6;color:var(--ink-2);margin-top:12px">Uppercase, wide-tracked, used only for kickers, tags, data labels, and footer metadata — never for body copy. It signals "this is a system" the way the loop diagram does visually.</p>
+        <div style="font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--green);margin-top:16px">The growth loop · 01 / 04</div>
+      </div>
+    </div>
+  </div>
+  <div class="footer"><span>AI Growth Systems</span><span>Visual Identity — 17 / 24</span></div>
+</div>
+
+<!-- ============ 18 HIERARCHY & USAGE ============ -->
+<div class="page">
+  <div class="page__pad">
+    <span class="kicker">Typography — Hierarchy &amp; usage</span>
+    <div style="flex:1;display:flex;flex-direction:column;gap:14px;justify-content:center">
+      <div style="font-family:var(--display);font-weight:700;font-size:46px;letter-spacing:-.025em">H1 — Bricolage Grotesque 700 / 46px</div>
+      <div style="font-family:var(--display);font-weight:700;font-size:32px;letter-spacing:-.02em">H2 — Bricolage Grotesque 700 / 32px</div>
+      <div style="font-family:var(--display);font-weight:600;font-size:22px">H3 — Bricolage Grotesque 600 / 22px</div>
+      <div style="font-family:var(--sans);font-weight:400;font-size:17px;color:var(--ink-2);line-height:1.5;max-width:640px">Body — Archivo 400 / 17px / 1.6 line-height. Used for paragraphs and longer-form copy.</div>
+      <div style="font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--green)">Kicker / Label — IBM Plex Mono 500 / 12px / +16% tracking</div>
+    </div>
+  </div>
+  <div class="footer"><span>AI Growth Systems</span><span>Visual Identity — 18 / 24</span></div>
+</div>
+
+<!-- ============ 19 DIVIDER: GRAPHIC STYLE ============ -->
+<div class="page dark">
+  <div class="dotgrid"></div>
+  <div class="page__pad" style="justify-content:center">
+    <span class="kicker">Section 04</span>
+    <h1 class="big" style="color:var(--paper);font-size:64px">Graphic style</h1>
+  </div>
+  <div class="footer"><span>AI Growth Systems</span><span>Visual Identity — 19 / 24</span></div>
+</div>
+
+<!-- ============ 20 PHOTOGRAPHY ============ -->
+<div class="page">
+  <div class="page__pad">
+    <span class="kicker">Graphic style — Photography</span>
+    <h2 class="sec">Grounded, not polished</h2>
+    <div class="row" style="flex:1">
+      <div class="col" style="border-radius:14px;overflow:hidden;position:relative">
+        <img src="images/cedric-hero.jpeg" style="width:100%;height:100%;object-fit:cover">
+        <span class="tag" style="position:absolute;bottom:12px;left:12px;background:rgba(255,255,255,.85);padding:4px 10px;border-radius:6px">Untreated</span>
+      </div>
+      <div class="col" style="border-radius:14px;overflow:hidden;position:relative">
+        <img src="images/cedric-hero.jpeg" style="width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.15) brightness(1.05)">
+        <div style="position:absolute;inset:0;background:var(--green);mix-blend-mode:multiply;opacity:.5"></div>
+        <span class="tag" style="position:absolute;bottom:12px;left:12px;background:rgba(255,255,255,.85);padding:4px 10px;border-radius:6px">Brand treatment — green duotone</span>
+      </div>
+    </div>
+    <p class="lead" style="margin-top:16px;font-size:14px">Real working moments — teaching, speaking, screen-sharing — over staged stock photography. The standard treatment is a green duotone at 45–55% strength over a high-contrast grayscale base.</p>
+  </div>
+  <div class="footer"><span>AI Growth Systems</span><span>Visual Identity — 20 / 24</span></div>
+</div>
+
+<!-- ============ 21 ILLUSTRATIONS & ICONS ============ -->
+<div class="page">
+  <div class="page__pad">
+    <span class="kicker">Graphic style — Illustrations &amp; icons</span>
+    <h2 class="sec">One line-icon per system</h2>
+    <div class="grid4" style="flex:1">
+      <div class="card" style="display:flex;flex-direction:column;gap:14px;align-items:flex-start">
+        <div style="width:46px;height:46px;border-radius:11px;background:rgba(44,99,214,.1);color:#2C63D6;display:flex;align-items:center;justify-content:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><circle cx="11" cy="11" r="3.4"></circle><path d="M11 2.5v2.6M19.5 11h-2.6M11 19.5v-2.6M2.5 11h2.6M11 11l9 9"></path></svg></div>
+        <b style="font-family:var(--display);font-size:15px">Get Found</b>
+      </div>
+      <div class="card" style="display:flex;flex-direction:column;gap:14px;align-items:flex-start">
+        <div style="width:46px;height:46px;border-radius:11px;background:rgba(196,91,54,.1);color:#C45B36;display:flex;align-items:center;justify-content:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h18l-6.5 8v6l-5 2v-8z"></path></svg></div>
+        <b style="font-family:var(--display);font-size:15px">Get Customers</b>
+      </div>
+      <div class="card" style="display:flex;flex-direction:column;gap:14px;align-items:flex-start">
+        <div style="width:46px;height:46px;border-radius:11px;background:rgba(30,135,91,.1);color:#1E875B;display:flex;align-items:center;justify-content:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8a8 8 0 0 1 13-2.5l2 2"></path><path d="M20 16a8 8 0 0 1-13 2.5l-2-2"></path><path d="M19 3.5v4h-4M5 20.5v-4h4"></path></svg></div>
+        <b style="font-family:var(--display);font-size:15px">Run Lean</b>
+      </div>
+      <div class="card" style="display:flex;flex-direction:column;gap:14px;align-items:flex-start">
+        <div style="width:46px;height:46px;border-radius:11px;background:rgba(176,122,30,.12);color:#B07A1E;display:flex;align-items:center;justify-content:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5z"></path><path d="M3 12.5l9 5 9-5"></path><path d="M3 17l9 5 9-5"></path></svg></div>
+        <b style="font-family:var(--display);font-size:15px">Build Assets</b>
+      </div>
+    </div>
+    <p class="lead" style="margin-top:8px;font-size:14px">1.7px stroke, rounded joins, 24×24 viewbox, single accent color matching the pillar. No fills, no gradients, no two-tone icons.</p>
+  </div>
+  <div class="footer"><span>AI Growth Systems</span><span>Visual Identity — 21 / 24</span></div>
+</div>
+
+<!-- ============ 22 SHAPES, PATTERNS & TEXTURES ============ -->
+<div class="page">
+  <div class="page__pad">
+    <span class="kicker">Graphic style — Shapes, patterns &amp; textures</span>
+    <h2 class="sec">Dot grids &amp; the loop motif</h2>
+    <div class="grid3" style="flex:1">
+      <div style="border-radius:14px;background:var(--paper-2);background-image:radial-gradient(rgba(21,23,28,.18) 1.5px,transparent 1.5px);background-size:22px 22px;border:1px solid #E4DECB"></div>
+      <div style="border-radius:14px;background:var(--card);border:1px solid #E4DECB;display:flex;align-items:center;justify-content:center">
+        <svg width="120" height="120" viewBox="0 0 200 200" fill="none">
+          <circle cx="100" cy="100" r="90" fill="none" stroke="#15171C" stroke-width="1" opacity=".12"/>
+          <circle cx="100" cy="100" r="65" fill="none" stroke="#15171C" stroke-width="1" opacity=".18"/>
+          <path d="M105.58,20.19 A80,80 0 0 1 179.81,94.42" stroke="#2C63D6" stroke-width="14" stroke-linecap="round" opacity=".85"/>
+          <path d="M179.81,105.58 A80,80 0 0 1 105.58,179.81" stroke="#C45B36" stroke-width="14" stroke-linecap="round" opacity=".85"/>
+          <path d="M94.42,179.81 A80,80 0 0 1 20.19,105.58" stroke="#1E875B" stroke-width="14" stroke-linecap="round" opacity=".85"/>
+          <path d="M20.19,94.42 A80,80 0 0 1 94.42,20.19" stroke="#B07A1E" stroke-width="14" stroke-linecap="round" opacity=".85"/>
+        </svg>
+      </div>
+      <div style="border-radius:14px;background:var(--dark);background-image:linear-gradient(rgba(245,242,234,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(245,242,234,.05) 1px,transparent 1px);background-size:30px 30px"></div>
+    </div>
+    <p class="lead" style="margin-top:8px;font-size:14px">A faint dot grid (the hero background), concentric rings around the logomark for emphasis states, and a fine line grid on dark surfaces. Used sparingly — texture supports content, it doesn't compete with it.</p>
+  </div>
+  <div class="footer"><span>AI Growth Systems</span><span>Visual Identity — 22 / 24</span></div>
+</div>
+
+<!-- ============ 23 LAYOUT PRINCIPLES ============ -->
+<div class="page">
+  <div class="page__pad">
+    <span class="kicker">Graphic style — Layout principles</span>
+    <h2 class="sec">Five rules</h2>
+    <div class="grid3" style="flex:1;gap:16px">
+      <div class="card"><b style="font-family:var(--display);font-size:15px">1. Grid &amp; structure</b><p style="font-size:13px;color:var(--ink-2);margin-top:8px;line-height:1.5">1240px max content width, 28px side padding, 2-column grids for paired content.</p></div>
+      <div class="card"><b style="font-family:var(--display);font-size:15px">2. Density &amp; space</b><p style="font-size:13px;color:var(--ink-2);margin-top:8px;line-height:1.5">Generous vertical rhythm between sections; never crowd more than one idea per screen.</p></div>
+      <div class="card"><b style="font-family:var(--display);font-size:15px">3. Hierarchy &amp; focus</b><p style="font-size:13px;color:var(--ink-2);margin-top:8px;line-height:1.5">One kicker, one headline, one lead paragraph, then evidence — in that order, every time.</p></div>
+      <div class="card"><b style="font-family:var(--display);font-size:15px">4. The loop as anchor</b><p style="font-size:13px;color:var(--ink-2);margin-top:8px;line-height:1.5">Where a page needs a centerpiece graphic, default to the logomark or pillar icons before inventing something new.</p></div>
+      <div class="card"><b style="font-family:var(--display);font-size:15px">5. Paper first</b><p style="font-size:13px;color:var(--ink-2);margin-top:8px;line-height:1.5">Dark surfaces are reserved for section breaks and emphasis — most of the brand lives on paper.</p></div>
+    </div>
+  </div>
+  <div class="footer"><span>AI Growth Systems</span><span>Visual Identity — 23 / 24</span></div>
+</div>
+
+<!-- ============ 24 THANK YOU ============ -->
+<div class="page darker">
+  <div class="dotgrid"></div>
+  <div class="page__pad" style="justify-content:center;align-items:center;text-align:center">
+    <svg class="mark" width="64" height="64" viewBox="0 0 200 200" fill="none">
+      <path d="M105.58,20.19 A80,80 0 0 1 179.81,94.42" stroke="#2C63D6" stroke-width="22"/>
+      <path d="M179.81,105.58 A80,80 0 0 1 105.58,179.81" stroke="#C45B36" stroke-width="22"/>
+      <path d="M94.42,179.81 A80,80 0 0 1 20.19,105.58" stroke="#1E875B" stroke-width="22"/>
+      <path d="M20.19,94.42 A80,80 0 0 1 94.42,20.19" stroke="#B07A1E" stroke-width="22"/>
+    </svg>
+    <h1 class="big" style="color:var(--paper);font-size:48px;margin-top:24px">Thank you.</h1>
+    <p class="lead" style="margin-top:14px;color:rgba(245,242,234,.6)">AI Growth Systems by Cedric De Schaut — team@firgun.vc</p>
+  </div>
+  <div class="footer"><span>AI Growth Systems</span><span>Visual Identity — 24 / 24</span></div>
+</div>
+
+</div>
+</body>
+</html>
