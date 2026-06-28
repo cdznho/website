@@ -73,16 +73,16 @@ function showNotification(message, type = 'info') {
     let backgroundColor;
     switch (type) {
         case 'success':
-            backgroundColor = '#10b981';
+            backgroundColor = '#0B7A55';
             break;
         case 'error':
-            backgroundColor = '#ef4444';
+            backgroundColor = '#C95F36';
             break;
         case 'info':
-            backgroundColor = '#3b82f6';
+            backgroundColor = '#2F68D8';
             break;
         default:
-            backgroundColor = '#2563eb';
+            backgroundColor = '#0B7A55';
     }
     
     // Add notification styles
@@ -159,9 +159,9 @@ document.addEventListener('DOMContentLoaded', () => {
 window.addEventListener('scroll', () => {
     const navbar = document.querySelector('.navbar');
     if (window.scrollY > 50) {
-        navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+        navbar.style.background = 'rgba(247, 243, 234, 0.96)';
     } else {
-        navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+        navbar.style.background = 'rgba(247, 243, 234, 0.9)';
     }
 });
 

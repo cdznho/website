@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-label="AI Growth Systems logo mark">
+  
+  <path d="M 81.72 183.16 A 72 72 0 0 1 56.04 125.49" fill="none" stroke="#B98219" stroke-width="16" stroke-linecap="round"/>
+  <path d="M 183.16 174.28 A 72 72 0 0 1 125.49 199.96" fill="none" stroke="#2F68D8" stroke-width="16" stroke-linecap="round"/>
+  <path d="M 174.28 72.84 A 72 72 0 0 1 199.96 130.51" fill="none" stroke="#C95F36" stroke-width="16" stroke-linecap="round"/>
+  <path d="M 72.84 81.72 A 72 72 0 0 1 130.51 56.04" fill="none" stroke="#0B7A55" stroke-width="16" stroke-linecap="round"/>
+  <circle cx="128" cy="128" r="21" fill="#EFE8DA"/>
+  <path d="M 116 128 H 140 M 128 116 V 140" fill="none" stroke="#0B7A55" stroke-width="5" stroke-linecap="round"/>
+</svg>

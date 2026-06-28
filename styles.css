@@ -5,27 +5,45 @@
 }
 
 :root {
-    --primary-color: #2563eb;
-    --primary-hover: #1d4ed8;
-    --secondary-color: #64748b;
-    --text-primary: #1e293b;
-    --text-secondary: #64748b;
-    --text-light: #94a3b8;
-    --bg-primary: #ffffff;
-    --bg-secondary: #f8fafc;
-    --bg-alt: #f1f5f9;
-    --border-color: #e2e8f0;
-    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --paper: #F7F3EA;
+    --paper-alt: #EFE8DA;
+    --card: #FBF9F3;
+    --ink: #151A16;
+    --dark: #102016;
+    --muted: #5E665E;
+    --line: #D8D2C4;
+    --system-green: #0B7A55;
+    --growth-green: #168A5B;
+    --visibility-blue: #2F68D8;
+    --customer-rust: #C95F36;
+    --asset-ochre: #B98219;
+    --mono-sand: #C9C1A5;
+    --mono-sage: #9BAFA2;
+    --mono-eucalyptus: #6F897C;
+    --primary-color: var(--system-green);
+    --primary-hover: #075F42;
+    --secondary-color: var(--muted);
+    --text-primary: var(--ink);
+    --text-secondary: var(--muted);
+    --text-light: #8B9288;
+    --bg-primary: var(--paper);
+    --bg-secondary: var(--card);
+    --bg-alt: var(--paper-alt);
+    --border-color: var(--line);
+    --display: 'Bricolage Grotesque', Georgia, serif;
+    --sans: 'Archivo', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    --shadow: 0 10px 28px rgba(21, 26, 22, 0.07);
+    --shadow-lg: 0 22px 60px rgba(21, 26, 22, 0.12);
     --radius: 12px;
-    --transition: all 0.3s ease;
+    --transition: all 0.24s ease;
 }
 
 body {
-    font-family: 'Inter', sans-serif;
+    font-family: var(--sans);
     line-height: 1.6;
     color: var(--text-primary);
-    background-color: var(--bg-primary);
+    background-color: var(--paper);
 }
 
 .container {
@@ -2729,4 +2747,691 @@ html {
         width: 100%;
         text-align: center;
     }
+}
+
+/* AI Growth Systems global identity pass - 2026-06-28 */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--paper);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+::selection {
+    background: var(--system-green);
+    color: #fff;
+}
+
+.container {
+    max-width: 1180px;
+}
+
+.navbar {
+    background: rgba(247, 243, 234, 0.9);
+    border-bottom: 1px solid rgba(216, 210, 196, 0.78);
+    box-shadow: 0 8px 26px rgba(21, 26, 22, 0.06);
+    backdrop-filter: saturate(140%) blur(14px);
+}
+
+.nav-container {
+    max-width: 1240px;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+}
+
+.nav-logo a {
+    display: grid;
+    grid-template-columns: 38px auto;
+    grid-template-rows: auto auto;
+    column-gap: 0.72rem;
+    align-items: center;
+}
+
+.nav-logo a::before {
+    content: '';
+    grid-row: 1 / span 2;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: url('/images/brand/logos/ai-growth-systems-mark-color.svg') center / contain no-repeat;
+    box-shadow: 0 10px 24px rgba(11, 122, 85, 0.13);
+}
+
+.nav-logo span,
+.nav-logo h2 {
+    color: var(--ink);
+    font-family: var(--display);
+    font-size: 1.07rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+
+.nav-logo small {
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.nav-menu {
+    gap: 0.82rem;
+}
+
+.nav-link {
+    color: #31382F;
+    font-weight: 600;
+}
+
+.nav-link:hover,
+.footer-section a:hover,
+.share-link:hover,
+.community-link:hover {
+    color: var(--system-green);
+}
+
+.nav-link::after {
+    background-color: var(--system-green);
+}
+
+.nav-button {
+    border-radius: 10px;
+    border-color: rgba(21, 26, 22, 0.16);
+}
+
+.nav-button-primary,
+.btn-primary,
+.newsletter-cta,
+.step-num,
+.tag,
+.search-result,
+.final-cta-section,
+.course-card.purchasable::before {
+    background: var(--system-green);
+    border-color: var(--system-green);
+    color: #fff;
+}
+
+.nav-button-primary:hover,
+.btn-primary:hover,
+.newsletter-cta:hover,
+.social-link:hover {
+    background: var(--primary-hover);
+    border-color: var(--primary-hover);
+    color: #fff;
+}
+
+.btn,
+.nav-button,
+.btn-white,
+.btn-outline-white {
+    border-radius: 10px;
+    letter-spacing: 0;
+}
+
+.btn-secondary {
+    color: var(--ink);
+    border-color: rgba(21, 26, 22, 0.22);
+    background: transparent;
+}
+
+.btn-secondary:hover {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: #fff;
+}
+
+.hero,
+.page-hero,
+.ags-hero {
+    background: var(--paper);
+    background-image:
+        linear-gradient(rgba(21, 26, 22, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(21, 26, 22, 0.035) 1px, transparent 1px);
+    background-size: 46px 46px;
+}
+
+.page-hero,
+.ags-hero {
+    border-bottom: 1px solid var(--line);
+}
+
+.page-hero h1,
+.ags-hero-copy h1,
+.hero-title,
+.section-title,
+.section-heading h2,
+.ags-split h2,
+.two-column-list h2,
+.diagnostic-band h2,
+.preview-title,
+.post-title,
+.final-cta-section h2 {
+    color: var(--ink);
+    font-family: var(--display);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.page-hero p,
+.ags-hero-copy p,
+.hero-subtitle,
+.section-heading p,
+.lede,
+.post-content,
+.post-content p,
+.rich-copy p,
+.bridge-copy p,
+.article-content p,
+.course-content p,
+.ags-card p,
+.archive-column p,
+.ladder-item p,
+.process-step p,
+.faq-item p {
+    color: var(--muted);
+}
+
+.section {
+    background: var(--paper);
+}
+
+.section-alt,
+.paths,
+.about,
+.portfolio-courses-section,
+.pipeline-diagram,
+.hybrid-search-visual,
+.summary-visual,
+.diagnostic-band {
+    background: var(--paper-alt);
+}
+
+.logo-card,
+.stat,
+.article-card,
+.course-card,
+.stat-card,
+.newsletter-form,
+.flow-step,
+.takeaway-card,
+.video-section,
+.course-description,
+.cta-card,
+.search-method,
+.ags-hero-panel,
+.ags-card,
+.archive-column,
+.ladder-item,
+.process-step,
+.featured-article-clean {
+    background: var(--card);
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow);
+}
+
+.article-card,
+.course-card,
+.ags-card,
+.archive-column,
+.process-step,
+.featured-article-clean,
+.newsletter-form,
+.video-section,
+.course-description,
+.cta-card {
+    border-radius: 12px;
+}
+
+.article-card:hover,
+.course-card:hover,
+.ags-card:hover,
+.archive-column:hover,
+.process-step:hover,
+.featured-article-clean:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.logo-kicker,
+.section-kicker,
+.ags-card i,
+.community-features i,
+.newsletter-benefits i,
+.outcome-row i,
+.pipeline-stage h4,
+.flow-step h4,
+.takeaway-card h4,
+.search-method h6,
+.code-example h5,
+.course-price,
+.price,
+.price-current,
+.stat h3,
+.stat-number,
+.back-link:hover,
+.ags-card a,
+.ladder-item a,
+.archive-column a,
+.faq-item summary::after {
+    color: var(--system-green);
+}
+
+.section-kicker,
+.logo-kicker,
+.course-level,
+.course-duration,
+.ladder-item span,
+.tag,
+.post-meta,
+.post-tags .tag {
+    font-family: var(--mono);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.pillar-grid .ags-card:nth-child(1),
+.archive-column:nth-child(1) {
+    border-top: 4px solid var(--visibility-blue);
+}
+
+.pillar-grid .ags-card:nth-child(2),
+.archive-column:nth-child(2) {
+    border-top: 4px solid var(--customer-rust);
+}
+
+.pillar-grid .ags-card:nth-child(3),
+.archive-column:nth-child(3) {
+    border-top: 4px solid var(--growth-green);
+}
+
+.pillar-grid .ags-card:nth-child(4),
+.archive-column:nth-child(4) {
+    border-top: 4px solid var(--asset-ochre);
+}
+
+.agentic-bridge,
+.proof-strip,
+.final-cta-section,
+.footer,
+.rag-visualization-card,
+.system-center {
+    background: var(--dark);
+    color: #F7F3EA;
+}
+
+.agentic-bridge h2,
+.agentic-bridge .section-kicker,
+.final-cta-section h2,
+.footer-section h4,
+.footer-info h3,
+.system-center strong {
+    color: #F7F3EA;
+}
+
+.agentic-bridge .bridge-copy p,
+.proof-strip p,
+.final-cta-section p,
+.footer-info p,
+.footer-section a,
+.footer-bottom,
+.system-center span {
+    color: #C9C1A5;
+}
+
+.footer {
+    border-top: 1px solid rgba(247, 243, 234, 0.08);
+}
+
+.footer-info h3 {
+    font-family: var(--display);
+}
+
+.footer-info h3::before {
+    content: '';
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    margin-right: 0.58rem;
+    vertical-align: -0.42rem;
+    background: url('/images/brand/logos/ai-growth-systems-mark-mono.svg') center / contain no-repeat;
+}
+
+.social-link {
+    background: transparent;
+    border: 1px solid rgba(247, 243, 234, 0.16);
+    color: #F7F3EA;
+    border-radius: 10px;
+}
+
+.footer-bottom {
+    border-top-color: rgba(247, 243, 234, 0.1);
+}
+
+.blog-post {
+    background: var(--paper);
+}
+
+.post-content h2,
+.post-content h3,
+.post-content strong,
+.article-content h3,
+.course-content h3,
+.ags-card h3,
+.archive-column h3,
+.ladder-item h3,
+.process-step h3,
+.faq-item summary,
+.preview-header h1,
+.cta-card h3 {
+    color: var(--ink);
+}
+
+.post-content code,
+.course-level,
+.course-duration {
+    background: var(--paper-alt);
+    color: var(--ink);
+}
+
+.code-example {
+    background: var(--paper-alt);
+    border-left-color: var(--system-green);
+}
+
+.code-example pre {
+    background: #111D16;
+    color: #F7F3EA;
+}
+
+.comparison-card.vanilla {
+    background: #F7E8E0;
+    border-left-color: var(--customer-rust);
+}
+
+.comparison-card.advanced {
+    background: #E4EFE8;
+    border-left-color: var(--system-green);
+}
+
+.rag-visualization {
+    background: var(--paper-alt);
+    border-color: var(--system-green);
+}
+
+.rag-visualization-card::before,
+.course-visualization-card::before {
+    background: linear-gradient(45deg, rgba(247, 243, 234, 0.08), rgba(247, 243, 234, 0.02));
+}
+
+.course-visualization-card.data-science {
+    background: linear-gradient(135deg, var(--visibility-blue), var(--system-green));
+}
+
+.course-visualization-card.sql {
+    background: linear-gradient(135deg, var(--system-green), var(--growth-green));
+}
+
+.course-visualization-card.rag {
+    background: linear-gradient(135deg, var(--customer-rust), var(--asset-ochre));
+}
+
+.course-notice,
+.limited-offer-badge {
+    background: rgba(201, 95, 54, 0.12);
+    border-color: rgba(201, 95, 54, 0.34);
+    color: var(--customer-rust);
+}
+
+.limited-spots-banner {
+    background: rgba(185, 130, 25, 0.12);
+    border-color: rgba(185, 130, 25, 0.32);
+}
+
+.included-item,
+.comparison-card,
+.flow-step,
+.takeaway-card {
+    background: var(--card);
+    border: 1px solid var(--line);
+}
+
+.btn-white {
+    background: var(--card);
+    color: var(--dark);
+}
+
+.btn-outline-white {
+    color: #F7F3EA;
+    border-color: rgba(247, 243, 234, 0.45);
+}
+
+.btn-white:hover,
+.btn-outline-white:hover {
+    background: #F7F3EA;
+    color: var(--dark);
+}
+
+@media (max-width: 768px) {
+    .nav-logo a {
+        grid-template-columns: 34px auto;
+    }
+
+    .nav-logo a::before {
+        width: 32px;
+        height: 32px;
+    }
+
+    .nav-menu {
+        background: var(--paper);
+        border-top: 1px solid var(--line);
+        box-shadow: 0 24px 40px rgba(21, 26, 22, 0.12);
+    }
+}
+
+/* AI Growth Systems legacy page override layer - 2026-06-28 */
+.page-hero,
+.article-header {
+    background: var(--paper) !important;
+    background-image:
+        linear-gradient(rgba(21, 26, 22, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(21, 26, 22, 0.035) 1px, transparent 1px) !important;
+    background-size: 46px 46px !important;
+    color: var(--ink) !important;
+    border-bottom: 1px solid var(--line) !important;
+}
+
+.page-hero h1,
+.article-title,
+.preview-title {
+    color: var(--ink) !important;
+    font-family: var(--display) !important;
+    letter-spacing: -0.02em !important;
+}
+
+.page-hero p,
+.article-meta,
+.breadcrumb,
+.proof-stat,
+.price-chip {
+    color: var(--muted) !important;
+    opacity: 1 !important;
+}
+
+.proof-stat strong {
+    color: var(--ink) !important;
+}
+
+.hero-badge {
+    background: rgba(11, 122, 85, 0.11) !important;
+    border-color: rgba(11, 122, 85, 0.28) !important;
+    color: var(--system-green) !important;
+    font-family: var(--mono) !important;
+    letter-spacing: 0.12em !important;
+}
+
+.article-content,
+.format-card,
+.audience-card,
+.contact-form-box,
+.hero-price-box,
+.for-who-card,
+.instructor-card,
+.team-access-box,
+.toc-box,
+.author-box,
+.curriculum-section .module,
+.included-item,
+.search-method,
+.takeaway-card,
+.flow-step,
+.video-section,
+.course-description,
+.cta-card,
+.admin-card,
+.dashboard-card,
+.subscriber-table {
+    background: var(--card) !important;
+    border-color: var(--line) !important;
+    box-shadow: var(--shadow) !important;
+    color: var(--ink) !important;
+}
+
+.format-card,
+.curriculum-section .module,
+.for-who-card,
+.audience-card,
+.hero-price-box,
+.article-content,
+.toc-box,
+.author-box,
+.instructor-card,
+.team-access-box {
+    border: 1px solid var(--line) !important;
+    border-radius: 12px !important;
+}
+
+.format-card,
+.step-box,
+.code-example {
+    border-left-color: var(--system-green) !important;
+    border-top-color: var(--system-green) !important;
+}
+
+.module-header,
+.included-icon,
+.step-box,
+.team-access-box,
+.toc-box,
+.author-box,
+.course-level,
+.course-duration {
+    background: var(--paper-alt) !important;
+}
+
+.article-content h2,
+.article-content h3,
+.format-card h3,
+.audience-card h4,
+.contact-form-box h3,
+.hero-price-box,
+.hero-price-box h3,
+.for-who-card h4,
+.team-access-box h3,
+.author-box-text h4,
+.module-header,
+.included-content h3,
+.toc-box h4 {
+    color: var(--ink) !important;
+}
+
+.article-content p,
+.article-content ul,
+.article-content ol,
+.article-content li,
+.format-card p,
+.format-card ul li,
+.audience-card p,
+.contact-form-box p,
+.hero-price-box ul li,
+.hero-price-box .price-note,
+.for-who-card p,
+.included-content p,
+.team-access-box p,
+.author-box-text p,
+.module-lesson,
+.step-box p {
+    color: var(--muted) !important;
+}
+
+.hero-price-box .price-tag,
+.format-card .price-line,
+.module-lesson i,
+.format-card ul li i,
+.outcome-row i,
+.breadcrumb a,
+.toc-box ol li a,
+.related-links a,
+.back-link,
+.step-box .step-label {
+    color: var(--system-green) !important;
+}
+
+.inline-cta-box,
+.cta-section,
+.final-cta-section,
+.comparison-table th,
+.search-result {
+    background: var(--dark) !important;
+    color: #F7F3EA !important;
+}
+
+.inline-cta-box h3,
+.inline-cta-box h4,
+.cta-section h3,
+.final-cta-section h2,
+.inline-cta-box p,
+.cta-section p,
+.final-cta-section p {
+    color: #F7F3EA !important;
+}
+
+.inline-cta-box .btn,
+.cta-section .btn,
+.btn-white {
+    background: var(--card) !important;
+    border-color: var(--card) !important;
+    color: var(--dark) !important;
+}
+
+.btn-outline-white {
+    background: transparent !important;
+    border-color: rgba(247, 243, 234, 0.55) !important;
+    color: #F7F3EA !important;
+}
+
+.export-btn[onclick="addTestSubscriber()"] {
+    background: var(--asset-ochre) !important;
+}
+
+
+.page-hero .btn-secondary,
+.page-hero .hero-cta-stack .btn-secondary,
+.page-hero .button-row .btn-secondary {
+    color: var(--ink) !important;
+    border-color: rgba(21, 26, 22, 0.22) !important;
+    background: rgba(251, 249, 243, 0.42) !important;
+}
+
+.page-hero .btn-secondary:hover,
+.page-hero .hero-cta-stack .btn-secondary:hover,
+.page-hero .button-row .btn-secondary:hover {
+    color: #fff !important;
+    border-color: var(--ink) !important;
+    background: var(--ink) !important;
 }
